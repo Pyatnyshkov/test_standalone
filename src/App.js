@@ -31,7 +31,7 @@ function App(props) {
   useEffect(() => {
     scrollToStep(currentStep);
     //обработка скролла страницы
-    // window.addEventListener('scroll', getPosition);
+    window.addEventListener('scroll', getPosition);
     //обработка работы со стрелочками в браузере
     window.onpopstate = (e) => {
       const step = e.srcElement.location.pathname.slice(1);
@@ -40,13 +40,13 @@ function App(props) {
     //установка локализации
     I18n.locale = props.language || 'ru';
     I18n.currentLocale();
-    setLocale(props.language || 'ru')
-  }, []);
+    setLocale(props.language || 'ru');
+    return () => window.removeEventListener('scroll', getPosition);
+  }, [props.language]);
 
   //обработка нажатия навигации
   const handleStep = step => {
     window.history.pushState('', '', '/' + step);
-    setCurrentstep(step);
     scrollToStep(step);
   };
 
@@ -57,13 +57,12 @@ function App(props) {
 
   const getPosition = () => {
     for (let step in steps) {
-      //определяем координаты step
       const pos = steps[step].current.getBoundingClientRect();
-      //насколько его край виднеется относительно верха
-      const offsetBottom = pos.bottom - window.innerHeight;
-      //видимая часть составляет от 0 до 100px
-      if ( offsetBottom > 0 && offsetBottom < 100 ) {
+      const height = steps[step].current.offsetHeight;
+      const offsetBottom = pos.bottom - height;
+      if ( offsetBottom > 0 && offsetBottom < 120 ) {
         window.history.pushState('', '', '/' + step);
+        setCurrentstep(step);
         setCurrentstep(step);
       }
     }

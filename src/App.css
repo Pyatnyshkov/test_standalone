@@ -1,0 +1,90 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #1a2737;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background-color: #fff;
+  font-family: BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Open Sans,Helvetica Neue,Roboto Rouble,sans-serif;
+}
+
+.register_page{
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+}
+
+.menu {
+  width: 230px;
+  min-height: 100%;
+  background-color: #222a32;
+  position: fixed;
+}
+
+.navigation {
+  margin-top: 100px;
+}
+
+.navigation_label {
+  width: 100%;
+  padding: 0 12px 0 24px;
+  height: 48px;
+  line-height: 48px;
+  color: #fff;
+  font-size: 14px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.navigation_elem:not(:last-child) .navigation_label {
+  border-bottom: 1px solid hsla(0,0%,100%,.08);
+}
+
+.navigation_radio {
+  display: none;
+}
+
+.navigation_radio:checked ~ .navigation_label{
+  background-color: hsla(0,0%,100%,.1);
+}
+
+.main_page {
+  width: calc(100% - 230px);
+  margin-left: 230px;
+}
+
+.header {
+  position: fixed;
+  height: 90px;
+  width: calc(100% - 230px);
+  border-bottom: 2px solid #dfe2ec;
+  padding: 0 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+}
+
+.content_container {
+  padding-top: 90px;
+}
+
+.content {
+  margin: 2rem;
+}
+
+.content_elem {
+  padding: 1rem;
+  height: 600px;
+  background-color: #ebebeb;
+  margin-bottom: 20px;
+}
+
+.content_elem:last-child {
+  margin-bottom: 500px;
+}
+

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import RegisterOrder from './RegisterOrder';
 
 ReactDOM.render(
-    <App />,
+    <RegisterOrder />,
   document.getElementById('root')
 );
 

@@ -1,21 +1,22 @@
 import {
 	SET_LANGUAGE,
 	SET_STEP,
-	SET_LOADING,
+	SHOW_LOADER,
+	HIDE_LOADER,
 	SHOW_NOTIFY,
 	HIDE_NOTIFY,
-	SET_SENDSTEP
+	ADD_SEND
 } from "../types";
 
 const initialState = {
 	language: "",
 	isLoading: false,
 	currentStep: window.location.pathname.slice(1) || 'order',
-	showSend: true,
+	showSend: false,
 	notify: {
 		type: "",
 		title: "",
-		message: ""
+		text: ""
 	},
 };
 
@@ -31,10 +32,15 @@ export default function appReducer(state = initialState, action) {
 				...state,
 				currentStep: action.payload,
 			};
-		case SET_LOADING:
+		case SHOW_LOADER:
 			return {
 				...state,
-				isLoading: action.payload,
+				isLoading: true,
+			};
+		case HIDE_LOADER:
+			return {
+				...state,
+				isLoading: false,
 			};
 		case SHOW_NOTIFY:
 			return {
@@ -46,7 +52,7 @@ export default function appReducer(state = initialState, action) {
 				...state,
 				notify: initialState.notify,
 			};
-		case SET_SENDSTEP:
+		case ADD_SEND:
 			return {
 				...state,
 				showSend: action.payload,

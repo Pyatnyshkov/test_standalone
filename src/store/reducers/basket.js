@@ -1,11 +1,13 @@
 import {
 	SET_BASKET,
 	SET_BASKET_ITEM,
+	SET_EDITABLE,
 	DELETE_BASKET_ITEM
 } from "../types";
 
 const initialState = {
-	items: [],
+	items: {},
+	editableItem: ''
 };
 
 export default function detailsReducer(state = initialState, action) {

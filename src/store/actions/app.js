@@ -1,19 +1,23 @@
 import {
 	SET_LANGUAGE,
 	SET_STEP,
-	SET_LOADING,
+	SHOW_LOADER,
+	HIDE_LOADER,
 	SHOW_NOTIFY,
 	HIDE_NOTIFY,
-	SET_SENDSTEP
+	ADD_SEND
 } from "../types";
 
-export const setLoading = (isLoading) => ({
-	type: SET_LOADING,
-	payload: isLoading,
+export const showLoader = () => ({
+	type: SHOW_LOADER
 });
 
-export const setSendStep = (isSend) => ({
-	type: SET_SENDSTEP,
+export const hideLoader = () => ({
+	type: HIDE_LOADER
+});
+
+export const addSend = (isSend) => ({
+	type: ADD_SEND,
 	payload: isSend,
 });
 

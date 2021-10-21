@@ -9,6 +9,6 @@ export const setDetail = (name, value) => ({
 });
 
 export const setDetails = (details) => ({
-	type: SET_SENDSTEP,
+	type: SET_DETAILS,
 	payload: details,
 });

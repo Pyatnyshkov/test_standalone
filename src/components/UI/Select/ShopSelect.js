@@ -9,18 +9,11 @@ const ShopSelect = ({label, name, onChange, options}) => {
         onChange(name, e.value)
     }
 
-    const shopOptions = options.map(shop => ({
-        label: shop.name,
-        value: shop.id
-    }))
-
-    console.log(shopOptions)
-
     return (
         <div>
             <label>
                 {label}
-                <Select options={shopOptions} onChange={handleChange}/>
+                <Select options={options} onChange={handleChange}/>
             </label>
             
         </div>

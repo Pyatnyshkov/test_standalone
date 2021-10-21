@@ -4,14 +4,17 @@ import {
 } from "../types";
 
 import { showLoader, hideLoader } from "./app";
+import { setDetail } from './details';
 import { getShops } from "../../api/getShops";
 
 export const setShops = () => async (dispatch) => {
 	dispatch(showLoader());
-	const shops = await getShops();
+	let shops = await getShops();
+	shops = [].concat(shops);
 	dispatch({
 		type: SET_API_SHOPS,
-		payload: [].concat(shops)
+		payload: shops
 	});
+	dispatch(setDetail('shop_id', shops[0].id))
 	dispatch(hideLoader());
 };

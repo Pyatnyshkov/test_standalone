@@ -33,6 +33,11 @@ export const Order = forwardRef((props, ref) =>  {
 
 	const {shops} = useSelector(state => state.apiData);
 
+	const shopOptions = shops.map(shop => ({
+        label: shop.name,
+        value: shop.id
+    }))
+
 	const handleDetail = (name, value) => {
 		dispatch(setDetail(name, value))
 	}
@@ -43,7 +48,7 @@ export const Order = forwardRef((props, ref) =>  {
 	    return (
 	        <div className='details__content' ref={ref}>
 	            <form action="" className='form' style={{maxWidth: '400' + 'px'}}>
-	                <ShopSelect label={'Магазин'} name="shop_id" value={shop_id} onChange={handleDetail} options={shops} />
+	                <ShopSelect label={'Магазин'} name="shop_id" value={shop_id} onChange={handleDetail} options={shopOptions} />
 	                <CustomInput label={'ID заказа'} name="shopref" value={shopref} onChange={handleDetail} />
 	                <CustomInput label="Номер заказа" name="orderNumber" value={orderNumber} onChange={handleDetail}/>
 	                {/*<AcquirerSelect name={} onChange={setDetail} label={'Acquirer'}/>*/}

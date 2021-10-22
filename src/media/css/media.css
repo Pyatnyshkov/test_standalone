@@ -1,0 +1,139 @@
+.media {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.media__text {
+    border: 1px solid #ced4da;
+    color: #495057;
+    border-radius: .25rem;
+    display: block;
+    height: 36px;
+    margin-bottom: 20px;
+    padding: 8px 7px;
+    font-size: 14px;
+    line-height: 36px;
+}
+
+.media__text:focus {
+    border-color: #80bdff;
+    outline: 0;
+    -webkit-box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+    box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+}
+
+.media__text-small,
+.media__button-small {
+    width: 100px;
+}
+
+.media__text-medium,
+.media__button-medium {
+    width: 200px;
+}
+
+.media__text-big,
+.media__button-big {
+    width: 300px;
+}
+
+.media__checkbox {
+    border: 1px solid #c0c0c0;
+    border-radius: 3px;
+    appearance: none;
+    display: block;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.media__checkbox::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: calc(100% - 5px);
+    height: calc(100% - 5px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url('../img/icons/checkbox_checked.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    border-radius: 2px;
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+}
+
+.media__checkbox:checked::before {
+    opacity: 1;
+}
+
+.media__checkbox-small {
+    width: 15px;
+    height: 15px;
+}
+
+.media__checkbox-medium {
+    width: 20px;
+    height: 20px;
+}
+
+.media__checkbox-big {
+    width: 25px;
+    height: 25px;
+}
+
+.media__button {
+    border: 1px solid #c0c0c0;
+    border-radius: 5px;
+    background-color: #c0c0c0;
+    display: block;
+    height: 40px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 40px;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.media__button:hover {
+    opacity: 0.8;
+}
+
+.media__button-medium {
+    font-size: 16px;
+}
+
+.media__button-big {
+    font-size: 18px;    
+}
+
+.media__button-cancel {
+    color: #FFFFFF;
+    border-color:  #cc0000;
+    background-color: #cc0000;
+}
+
+.media__button-confirm {
+    color: #FFFFFF;
+    border-color: #339900;
+    background-color: #339900;
+}
+
+.media__select-small,
+.select__multipli-small,
+.select__creatable-small {
+    width: 200px;
+}
+
+.media__select-medium,
+.select__multipli-medium,
+.select__creatable-medium {
+    width: 300px;
+}
+
+.media__select-big,
+.select__multipli-big,
+.select__creatable-big {
+    width: 400px;
+}

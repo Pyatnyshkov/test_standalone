@@ -21,12 +21,11 @@ export const Basket = forwardRef((props, ref) => {
 	return (
 		<div className="basket content_elem" ref={ref}>
 			<div className="basket-header">
-				<span className="basket__title">{I18n.t("Basket")}</span>
 				<button
 					type="button"
 					className="open-modal-button"
 					onClick={() => setModalActive(true)}
-				></button>
+				>{I18n.t("Add to cart")}</button>
 			</div>
 
 			{Object.keys(items).length ? (

@@ -1,0 +1,36 @@
+@import './normalize.css';
+@import './media.css';
+@import './header.css';
+@import './menu.css';
+@import './header.css';
+@import './modal.css';
+
+.no-scroll {
+  height: 100%;
+  overflow-y: hidden;
+}
+
+
+.main_page {
+  width: calc(100% - 230px);
+  margin-left: 230px;
+}
+
+.content_container {
+  padding-top: 90px;
+}
+
+.content {
+  margin: 2rem;
+}
+
+.content_elem {
+  padding: 1rem;
+  height: 600px;
+  background-color: #ebebeb;
+  margin-bottom: 20px;
+}
+
+.content_elem:last-child {
+  margin-bottom: 500px;
+}

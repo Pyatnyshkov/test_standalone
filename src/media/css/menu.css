@@ -1,0 +1,33 @@
+.menu {
+  width: 230px;
+  min-height: 100%;
+  background-color: #222a32;
+  position: fixed;
+}
+
+.navigation {
+  margin-top: 100px;
+}
+
+.navigation_label {
+  width: 100%;
+  padding: 0 12px 0 24px;
+  height: 48px;
+  line-height: 48px;
+  color: #fff;
+  font-size: 14px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.navigation_elem:not(:last-child) .navigation_label {
+  border-bottom: 1px solid hsla(0,0%,100%,.08);
+}
+
+.navigation_radio {
+  display: none;
+}
+
+.navigation_radio:checked ~ .navigation_label{
+  background-color: hsla(0,0%,100%,.1);
+}

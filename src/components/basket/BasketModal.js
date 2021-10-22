@@ -1,8 +1,9 @@
 import React, {forwardRef, useState } from 'react';
-import CustomInput from './CustomInput.js';
-import { CustomSelect } from './CustomSelect';
 
-export const BasketModal = forwardRef(({active, setActive}, ref) => {
+import { CustomInput } from '../UI/CustomInput';
+import { CustomSelect } from '../UI/CustomSelect';
+
+export const BasketModal = forwardRef(({active, openModal}, ref) => {
     //!'propState:', 'обращение к редакс, для получения начального стейта айтема и => setOrderState'
     const requiredInputs = ['name', 'number', 'typename'];
     const [orderState, setOrderState] = useState({
@@ -78,7 +79,7 @@ export const BasketModal = forwardRef(({active, setActive}, ref) => {
     ]
 
     return (
-        <div ref={ref} className="modal" onClick={() => setActive(false)}>
+        <div ref={ref} className="modal" onClick={() => openModal(false)}>
             <form className="order-form basket-modal" onClick={(e) => e.stopPropagation()}>
                 <div className="modal-header">
                     <label className="modal-header-label">
@@ -117,7 +118,7 @@ export const BasketModal = forwardRef(({active, setActive}, ref) => {
                     </div>
                     <div className="form-buttons">
                     <button className="order-item__submit" type="submit" onClick={submitForm}>Сохранить</button>
-                    <button className="close-modal__button" type="button" onClick={() => setActive(false)}>Закрыть</button>
+                    <button className="close-modal__button" type="button" onClick={() => openModal(false)}>Закрыть</button>
                 </div>
                 </div>
             </form>

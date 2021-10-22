@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CustomInput = ({error, setError, label, name, onChange, placeholder, type, value}) => {
+export const CustomInput = ({error, setError, label, name, onChange, placeholder, type, value}) => {
     const handleChange = (event) => {
         if(error) setError((prevState) => ({...prevState, [name]: false}))
         onChange(event.target.name, event.target.value);
@@ -25,5 +25,3 @@ const CustomInput = ({error, setError, label, name, onChange, placeholder, type,
         </li>
     )
 };
-
-export default CustomInput;

@@ -16,7 +16,7 @@ import I18n from "i18n-js";
 import ru from "../i18n/ru.json";
 import en from "../i18n/en.json";
 
-import "../App.css";
+import "../media/App.css";
 
 function App(props) {
   const dispatch = useDispatch();

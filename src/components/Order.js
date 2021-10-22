@@ -1,15 +1,11 @@
-import React, {useState, forwardRef} from 'react';
-import ShopSelect from "./UI/Select/ShopSelect";
-import AcquirerSelect from "./UI/Select/AcquirerSelect";
-import CardTypeSelect from "./UI/Select/CardTypeSelect";
-import CurrencySelect from "./UI/Select/CurrencySelect";
-import PaymentMethodSelect from "./UI/Select/PaymentMethodSelect";
-import CustomInput from "./basket/CustomInput";
+import React, { useState, forwardRef } from "react";
+import { CustomInput } from "./UI/CustomInput";
+import { CustomSelect } from "./UI/CustomSelect";
 
-import {useDispatch, useSelector} from 'react-redux';
-import {setDetail} from '../store/actions/details';
+import { useDispatch, useSelector } from "react-redux";
+import { setDetail } from "../store/actions/details";
 
-export const Order = forwardRef((props, ref) =>  {
+export const Order = forwardRef((props, ref) => {
 	const dispatch = useDispatch();
 	const {
 		shop_id,
@@ -20,50 +16,113 @@ export const Order = forwardRef((props, ref) =>  {
 		language,
 		reccurring,
 		comment,
-		choosenCardType,
-		choosenPayType,
-		choosenAcquirer,
+		cardType,
+		payType,
+		acquirer,
 		returnURLOk,
 		returnURLFault,
 		showcase,
-		choosenPayMode
-	} = useSelector(state => state.details);
+		payMode,
+	} = useSelector((state) => state.details);
 
-	const {isLoading} = useSelector(state => state.app);
+	const { isLoading } = useSelector((state) => state.app);
 
-	const {shops} = useSelector(state => state.apiData);
+	const { shops, currencies, cardTypes, acquires } = useSelector((state) => state.apiData);
 
-	const shopOptions = shops.map(shop => ({
-        label: shop.name,
-        value: shop.id
-    }))
+	const shopOptions = shops.map((shop) => ({
+		label: shop.name,
+		value: shop.id,
+	}));
+
+	const langOptions = [
+		{
+			label: 'Русский',
+			value: 'ru',
+		}, 
+		{
+			label: 'Английский',
+			value: 'en',
+		}
+	];
+
+	const cardTypeOptions = cardTypes.map((cardType) => ({
+		label: cardType.name,
+		value: cardType.id,
+	}));
+
+	const acquirerOptions = acquires.map((acquirer) => ({
+		label: acquirer.name,
+		value: acquirer.id,
+	}));
 
 	const handleDetail = (name, value) => {
-		dispatch(setDetail(name, value))
-	}
+		dispatch(setDetail(name, value));
+	};
 
 	if (isLoading) {
-		return <div ref={ref}>Loading</div>
+		return <div ref={ref}>Loading</div>;
 	} else {
-	    return (
-	        <div className='details__content' ref={ref}>
-	            <form action="" className='form' style={{maxWidth: '400' + 'px'}}>
-	                <ShopSelect label={'Магазин'} name="shop_id" value={shop_id} onChange={handleDetail} options={shopOptions} />
-	                <CustomInput label={'ID заказа'} name="shopref" value={shopref} onChange={handleDetail} />
-	                <CustomInput label="Номер заказа" name="orderNumber" value={orderNumber} onChange={handleDetail}/>
-	                {/*<AcquirerSelect name={} onChange={setDetail} label={'Acquirer'}/>*/}
-	                <div className='form_block'>
-	                    {/*<CurrencySelect label={'Валюта'} name={currency} onChange={handleDetail} id={currency}/>*/}
-	                </div>
-	                <div className="form_block">
-	                    <label htmlFor="time">Время на оплату</label>
-	                    <input type="time" name="time" min="09:00" max="18:00" required/>
-	                </div>
-	                <CustomInput id={comment} name={comment} label={'Комментарий'} onChange={handleDetail}/>
-	                {/*<PaymentMethodSelect label={'Метод оплаты'}/>*/}
-	                {/*<CardTypeSelect label={'Тип оплаты'}/>*/}
-	            </form>
-	        </div>
-	    );
+		return (
+			<div className="details__content" ref={ref}>
+					<CustomSelect
+						label={"Магазин"}
+						name="shop_id"
+						value={shop_id}
+						onChange={handleDetail}
+						options={shopOptions}
+					/>
+					<CustomInput
+						label={"ID заказа"}
+						name="shopref"
+						value={shopref}
+						onChange={handleDetail}
+					/>
+					<CustomInput
+						label="Номер заказа"
+						name="orderNumber"
+						value={orderNumber}
+						onChange={handleDetail}
+					/>
+					<CustomSelect
+						label={'Валюта'}
+						name='currency'
+						value={currency}
+						onChange={handleDetail} 
+					/>
+					<CustomInput 
+						label={'Время на оплату'} 
+						name='timelimit'
+						value={timelimit} 
+						onChange={handleDetail}
+					/>
+					<CustomSelect
+						label={'Язык'}
+						name='language'
+						value={language}
+						onChange={handleDetail}
+						options={langOptions} 
+					/>
+					<CustomInput
+						label={"Комментарий"}
+						name='comment'
+						value={comment}
+						onChange={handleDetail}
+					/>
+					<CustomSelect 
+						label={'Тип карты'}
+						name='cardType'
+						value={cardType}
+						onChange={handleDetail}
+						options={cardTypeOptions} 
+					/>
+					<CustomSelect 
+						label={'Эмитент'}
+						name='acquirer'
+						value={acquirer}
+						onChange={handleDetail}
+						options={acquirerOptions} 
+					/>
+			</div>
+		);
 	}
 });

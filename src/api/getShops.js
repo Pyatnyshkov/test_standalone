@@ -2,7 +2,10 @@ import axios from "../utils/API";
 import { path } from "../utils/api_path";
 
 export const getShops = async () => {
-	if (typeof window !== "undefined" && window.location.hostname === 'localhost') {
+	try {
+		const response = await axios.post(path.shops);
+		return response.data.shops;
+	} catch (e) {
 		return [
 			{
 	            "id": 19672,
@@ -29,8 +32,12 @@ export const getShops = async () => {
 	            "name": "ag777"
 	        },
 	        {
-	            "id": 346,
+	            "id": 35,
 	            "name": "Agent.ru"
+	        },
+	        {
+	            "id": 51,
+	            "name": "Agent.ru/Real"
 	        },
 	        {
 	            "id": 14259,
@@ -57,9 +64,5 @@ export const getShops = async () => {
 	            "name": "alexfitness"
 	        }
 		]
-	} else {
-		const response = await axios.post(path.shops);
-		return response.data.data;
-
 	}
 };

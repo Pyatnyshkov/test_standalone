@@ -12,13 +12,13 @@ const initialState = {
 	language: '',
 	reccurring: '',
 	comment: '',
-	choosenCardType: '',
-	choosenPayType: '',
-	choosenAcquirer: '',
+	cardType: '',
+	payType: '',
+	acquirer: '',
 	returnURLOk: '',
 	returnURLFault: '',
 	showcase: '',
-	choosenPayMode: ''
+	payMode: ''
 };
 
 export default function detailsReducer(state = initialState, action) {

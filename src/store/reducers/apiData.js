@@ -1,11 +1,15 @@
 import {
 	SET_API_SHOPS,
-	SET_API_CURRENCIES
+	SET_API_CURRENCIES,
+	SET_API_ACQUIRES,
+	SET_API_CARDTYPES
 } from "../types";
 
 const initialState = {
 	shops: [],
-	currencies: []
+	currencies: [],
+	acquires: [],
+	cardTypes: []
 };
 
 export default function appReducer(state = initialState, action) {
@@ -19,6 +23,16 @@ export default function appReducer(state = initialState, action) {
 			return {
 				...state,
 				currencies: action.payload,
+			};
+		case SET_API_ACQUIRES:
+			return {
+				...state,
+				acquires: action.payload,
+			};
+		case SET_API_CARDTYPES:
+			return {
+				...state,
+				cardTypes: action.payload,
 			};
 		default:
 			return state;

@@ -13,7 +13,9 @@ export const SET_DETAILS = 'SET_DETAILS';
 
 //basket
 export const SET_BASKET = 'SET_BASKET';
-export const SET_BASKET_ITEM = 'SET_BASKET_ITEM';
+export const EDIT_BASKET_ITEM = 'EDIT_BASKET_ITEM';
+export const EDIT_BASKET_KEY = 'EDIT_BASKET_KEY';
+export const ADD_BASKET_ITEM = 'ADD_BASKET_ITEM';
 export const DELETE_BASKET_ITEM = 'DELETE_BASKET_ITEM';
 
 //api

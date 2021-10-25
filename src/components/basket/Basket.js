@@ -1,43 +1,42 @@
-import React, { forwardRef, useRef, useState } from "react";
+import React, { forwardRef, useRef, useState } from 'react';
 
-import { BasketModal } from "./BasketModal";
-import { BasketList } from "./BasketList";
+import { useSelector } from 'react-redux';
 
-import { useSelector } from "react-redux";
-
-import { fadeIn, fadeOut } from "../../helpers/modal-fade";
-
-import I18n from "i18n-js";
+import { OrderModal } from './OrderModal';
+import { OrderList } from './OrderList';
+import { fadeIn, fadeOut } from '../../helpers/modal-fade'
 
 export const Basket = forwardRef((props, ref) => {
 	const modalRef = useRef();
 	const [modalActive, setModalActive] = useState(false);
-	const { items } = useSelector((state) => state.basket);
+	const order = useSelector(state => state.basket);
+	const orderItemsLenght = Object.keys(order.items).length; //* проверка количества ключей в объекте для отображения списка
 
-	modalActive
-		? fadeIn(modalRef.current, 200)
-		: fadeOut(modalRef.current, 200);
+	// * анимация появления/исчезноваения модального окна/попапа
+	modalActive ? 
+		fadeIn(modalRef.current, 200) : 
+		fadeOut(modalRef.current, 200)
+
 
 	return (
 		<div className="basket content_elem" ref={ref}>
 			<div className="basket-header">
-				<button
-					type="button"
-					className="open-modal-button"
-					onClick={() => setModalActive(true)}
-				>{I18n.t("Add to cart")}</button>
+				<span className="basket__title">{props.nameBasketElement}</span>
+				<button 
+					type="button" 
+					className="open-modal-button" 
+					aria-label="Кнопка открытия модального окна" 
+					onClick={() => setModalActive(true)}>
+				</button>
 			</div>
 
-			{Object.keys(items).length ? (
-				<BasketList openModal={setModalActive} />
-			) : (
-				<span className="basket__title">{I18n.t("Empty basket")}</span>
-			)}
-			<BasketModal
-				ref={modalRef}
-				active={modalActive}
-				openModal={setModalActive}
-			/>
+			{ 
+				orderItemsLenght ? 
+					<OrderList list={order.items} setActive={setModalActive} /> : 
+					<span className="basket__title">Корзина пуста</span>
+			}
+
+			<OrderModal ref={modalRef} active={modalActive} setActive={setModalActive} />
 		</div>
-	);
-});
+	)
+})

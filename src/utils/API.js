@@ -52,13 +52,13 @@ instance.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (!dev) {
+    // if (!dev) {
       store.dispatch(showNotification({
         type: 'error',
         title: I18n.t('error 404 title'),
         text: I18n.t('error 404 text')
       }));
-    }
+    // }
     return Promise.reject(error);
   }
 );

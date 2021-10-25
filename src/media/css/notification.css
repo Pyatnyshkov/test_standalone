@@ -1,0 +1,85 @@
+.notification {
+    visibility: hidden;
+    position: fixed;
+    width: 350px;
+    min-height: 56px;
+    padding: 16px;
+    font-weight: 400;
+    line-height: 1.2;
+    border-radius: 8px;
+    -webkit-transition: -webkit-transform 0.2s ease-out;
+    transition: -webkit-transform 0.2s ease-out;
+    transition: transform 0.2s ease-out;
+    transition: transform 0.2s ease-out, -webkit-transform 0.2s ease-out;
+    z-index: 9999;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    color: #fff;
+    background: #0b1f35;
+    box-shadow: 0 4px 16px rgba(11, 31, 53, 0.12),
+        0 1px 2px rgba(11, 31, 53, 0.24);
+    top: 50px;
+}
+
+.notification_right {
+    right: 12px;
+    -webkit-transform: translate(350px, 0);
+    transform: translate(350px, 0);
+}
+
+.notification__title {
+    font-size: 16px;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.notification__content {
+    font-size: 13px;
+    line-height: 1.2;
+    font-weight: 400;
+}
+
+.notification__title + .notification__content {
+    margin-top: 8px;
+}
+
+.notification__icon {
+    display: none;
+    top: 16px;
+    left: 16px;
+    position: absolute;
+}
+
+.notification_ok,
+.notification_error,
+.notification_fail {
+    padding-left: 52px;
+}
+
+.notification_ok .notification__icon,
+.notification_error .notification__icon,
+.notification_fail .notification__icon {
+    display: block;
+}
+
+.notification_visible {
+    visibility: visible;
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+}
+
+.icon {
+    display: inline-block;
+    vertical-align: middle;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+}
+
+.icon_error {
+    background-image: url("../img/icons/icon_error.svg");
+}

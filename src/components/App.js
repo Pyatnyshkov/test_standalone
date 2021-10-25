@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react";
 
 import Menu from "./Menu";
 import Header from "./Header";
+import Notification from './UI/Notification';
 import { Order } from "./Order";
 import { Basket } from "./basket/Basket";
 import { Customer } from "./Customer";
@@ -104,6 +105,7 @@ function App(props) {
           </div>
         </div>
       </div>
+      <Notification />
     </div>
   );
 }

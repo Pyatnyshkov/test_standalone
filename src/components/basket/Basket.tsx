@@ -1,27 +1,31 @@
 import React, { forwardRef, useRef, useState } from 'react';
-
 import { useSelector } from 'react-redux';
+import { RootState } from '../../store/index';
 
 import { OrderModal } from './OrderModal';
 import { OrderList } from './OrderList';
 import { fadeIn, fadeOut } from '../../helpers/modal-fade'
 
-export const Basket = forwardRef((props, ref) => {
-	const modalRef = useRef();
+import '../../media/css/basket.css';
+import '../../media/css/modal.css';
+
+//!оставил пропсы, потому что выскакивала ошибка от forwardRef
+//!необходимый тип для рефа в 14 строке я так и не нашел, поэтому временное решение - any
+export const Basket = forwardRef((props, ref: any) => {
+	const modalRef = useRef<HTMLDivElement>(null);
 	const [modalActive, setModalActive] = useState(false);
-	const order = useSelector(state => state.basket);
+	const order = useSelector((state: RootState) => state.basket); //* получаем состояние корзины
 	const orderItemsLenght = Object.keys(order.items).length; //* проверка количества ключей в объекте для отображения списка
 
-	// * анимация появления/исчезноваения модального окна/попапа
+	// * анимация появления/исчезноваения модального окна
 	modalActive ? 
 		fadeIn(modalRef.current, 200) : 
 		fadeOut(modalRef.current, 200)
 
 
 	return (
-		<div className="basket content_elem" ref={ref}>
+		<div className="basket content_elem" ref={ref.children}>
 			<div className="basket-header">
-				<span className="basket__title">{props.nameBasketElement}</span>
 				<button 
 					type="button" 
 					className="open-modal-button" 
@@ -36,7 +40,10 @@ export const Basket = forwardRef((props, ref) => {
 					<span className="basket__title">Корзина пуста</span>
 			}
 
-			<OrderModal ref={modalRef} active={modalActive} setActive={setModalActive} />
+			<div ref={modalRef} className="modal" onClick={() => setModalActive(false)}>
+				{modalActive ? <OrderModal setActive={setModalActive}/> : null}
+			</div>
+			
 		</div>
 	)
 })

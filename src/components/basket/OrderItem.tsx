@@ -1,5 +1,7 @@
 import React, {SyntheticEvent} from 'react';
 
+import I18n from "i18n-js";
+
 //! необходимо импортировать мапу/массив/объект с изображениями относительно каты.
 //! пока статика 2 фотки, чтобы видеть разные каты.
 const catGoods = "https://jira.ips.su/secure/projectavatar?pid=11001&avatarId=10011";
@@ -50,13 +52,13 @@ export const OrderItem: React.FC<IOrderItem> = ({id, value, setActive}) => {
                 <button 
                     type="button"
                     className="order-edit__button"
-                    aria-label="Кнопка редактирования элемента"
+                    aria-label={I18n.t("Item edit button")}
                     onClick={(event) => editItem(event, id)}
                 ></button>
                 <button 
                     type="button"
                     className="order-delete__button"
-                    aria-label="Кнопка удаления элемента"
+                    aria-label={I18n.t("Item delete button")}
                     onClick={(event) => deleteItem(event, id)}
                 ></button>
             </div>

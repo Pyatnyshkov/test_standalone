@@ -1,5 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
+import I18n from "i18n-js";
 
 type ErrorClassType = string | undefined;
 interface ICustomSelect {
@@ -28,7 +29,7 @@ export const CustomSelect: React.FC<ICustomSelect> = ({error, setError, name, la
     }
     return (
         <li className="list__item">
-            <span className="order-form__span">{label}</span>
+            <span className="order-form__span">{I18n.t(label)}</span>
             <div className={errorClass}>
                 <Select 
                     name={name} 

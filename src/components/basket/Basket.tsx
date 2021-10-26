@@ -4,7 +4,9 @@ import { RootState } from '../../store/index';
 
 import { OrderModal } from './OrderModal';
 import { OrderList } from './OrderList';
+
 import { fadeIn, fadeOut } from '../../helpers/modal-fade'
+import I18n from "i18n-js";
 
 import '../../media/css/basket.css';
 import '../../media/css/modal.css';
@@ -29,7 +31,7 @@ export const Basket = forwardRef((props, ref: any) => {
 				<button 
 					type="button" 
 					className="open-modal-button" 
-					aria-label="Кнопка открытия модального окна" 
+					aria-label={I18n.t("Modal open button")} 
 					onClick={() => setModalActive(true)}>
 				</button>
 			</div>
@@ -37,7 +39,7 @@ export const Basket = forwardRef((props, ref: any) => {
 			{ 
 				orderItemsLenght ? 
 					<OrderList list={order.items} setActive={setModalActive} /> : 
-					<span className="basket__title">Корзина пуста</span>
+					<span className="basket__title">{I18n.t("Cart is empty")}</span>
 			}
 
 			<div ref={modalRef} className="modal" onClick={() => setModalActive(false)}>

@@ -2,6 +2,8 @@ import React, {useEffect, useState, SyntheticEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/index';
 
+import I18n from "i18n-js";
+
 // import { addBasketItem, editBasketItemKey } from '../../store/actions/basket';
 
 import { CustomInput } from '../UI/CustomInput';
@@ -87,11 +89,11 @@ export const OrderModal: React.FC<IOrderModal> = ({setActive}) => {
                 <div className="modal-header">
                     <label className="modal-header-label">
                         <input className="modal-header__input" checked={activeRadio === 'goods'} name="header-type" type="radio" onChange={() => changeRadio('typename', 'goods')} />
-                        <span className="modal-header__span">Товары</span>
+                        <span className="modal-header__span">{I18n.t("Goods")}</span>
                     </label>
                     <label className="modal-header-label">
                         <input className="modal-header__input" checked={activeRadio !== 'goods'} name="header-type" type="radio" onChange={() => changeRadio('typename', '')} />
-                        <span className="modal-header__span">Услуги</span>
+                        <span className="modal-header__span">{I18n.t("Service")}</span>
                     </label>
                 </div>
                 <div className="scrolling-wrapp">
@@ -115,19 +117,19 @@ export const OrderModal: React.FC<IOrderModal> = ({setActive}) => {
                     </ul>
                     <div className="addition-radio">
                         <label className="addition-label">
-                            <span className="addition__span">Фискализация</span>
+                            <span className="addition__span">{I18n.t("Fiscalization")}</span>
                             <input type="radio" name="addition" value="Fiscalization"/>
                         </label>
                         <label className="addition-label">
-                            <span className="addition__span">Маркировка</span>
+                            <span className="addition__span">{I18n.t("Marking")}</span>
                             <input type="radio" name="addition" value="Marking"/>
                         </label>
                         <label className="addition-label">
-                            <span className="addition__span">Документы</span>
+                            <span className="addition__span">{I18n.t("Documents")}</span>
                             <input type="radio" name="addition" value="Documents"/>
                         </label>
                         <label className="addition-label">
-                            <span className="addition__span">Способы оплаты</span>
+                            <span className="addition__span">{I18n.t("Payment methods")}</span>
                             <input type="radio" name="addition" value="PaymentMethods"/>
                         </label>
                     </div>
@@ -135,11 +137,11 @@ export const OrderModal: React.FC<IOrderModal> = ({setActive}) => {
                         <button 
                             className="order-item__submit" 
                             type="submit" 
-                            >Сохранить</button>
+                            >{I18n.t("Save")}</button>
                         <button 
                             className="close-modal__button" 
                             type="button" 
-                            onClick={() => setActive(false)}>Закрыть</button>
+                            onClick={() => setActive(false)}>{I18n.t("Close")}</button>
                     </div>
                 </div>
             </form>

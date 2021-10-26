@@ -6,7 +6,7 @@ import { store } from "./store";
 export default function RegisterOrder() {
   return (
     <Provider store={store}>
-      <App />
+      <App show_send={false} language={'ru'}/>
     </Provider>
   );
 }

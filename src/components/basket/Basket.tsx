@@ -26,7 +26,7 @@ export const Basket = forwardRef((props, ref: any) => {
 
 
 	return (
-		<div className="basket content_elem" ref={ref.children}>
+		<div className="basket content_elem" ref={ref}>
 			<div className="basket-header">
 				<button 
 					type="button" 

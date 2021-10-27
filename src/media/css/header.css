@@ -14,3 +14,50 @@
 .header_info {
   font-size: 25px;
 }
+
+.header_right {
+  display: flex;
+}
+
+.header_right > *:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.header_control-icon {
+  width: 20px;
+  height: 14px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: block;
+  cursor: pointer;
+}
+
+.header_control-hover {
+  position: absolute;
+  display: none;
+  top: -20px;
+  left: -5px;
+  width: 100px;
+  background-color: transparent;
+  font-size: 12px;
+}
+
+.header_control-elem {
+  position: relative;
+}
+
+.header_control-elem:hover > .header_control-hover {
+  display: block;
+}
+
+.header_control-icon-ru {
+  background-image: url("../img/icons/ru.svg");
+}
+
+.header_control-icon-en {
+  background-image: url("../img/icons/gb.svg");
+}
+
+.header_control-icon-logout {
+  background-image: url("../img/icons/logout.svg");
+}

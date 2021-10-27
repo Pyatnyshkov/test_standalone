@@ -1,6 +1,6 @@
 import axios from "axios";
 import { store } from "../store";
-import { showNotification } from "../store/actions/app";
+import { setNotify } from "../store/reducers/app";
 import I18n from "i18n-js";
 
 let baseURL, deviceWidth, deviceHeight;
@@ -30,7 +30,7 @@ instance.interceptors.request.use(
   },
   error => {
     store.dispatch(
-      showNotification({
+      setNotify({
         type: "error",
         title: I18n.t(`error ${1000} title`),
         text: I18n.t(`error ${1000} text`)
@@ -44,7 +44,7 @@ instance.interceptors.response.use(
   response => {
     if (response.data.error) {
       store.dispatch(
-        showNotification({
+        setNotify({
           type: "error",
           title: I18n.t(`error ${response.data.error} title`),
           text: I18n.t(`error ${response.data.error} text`)
@@ -54,13 +54,13 @@ instance.interceptors.response.use(
     return response;
   },
   error => {
-    store.dispatch(
-      showNotification({
-        type: "error",
-        title: I18n.t("error 404 title"),
-        text: I18n.t("error 404 text")
-      })
-    );
+    // store.dispatch(
+    //   setNotify({
+    //     type: "error",
+    //     title: I18n.t("error 404 title"),
+    //     text: I18n.t("error 404 text")
+    //   })
+    // );
     return Promise.reject(error);
   }
 );

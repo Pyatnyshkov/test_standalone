@@ -8,16 +8,10 @@ import { Basket } from "./basket/Basket";
 import { Customer } from "./Customer";
 import { Send } from "./Send";
 
-import { RootState } from "../store";
-import { useDispatch, useSelector } from "react-redux";
-import { setLanguage, setCurrentStep, showSend } from "../store/reducers/app";
-import { setShops } from "../store/actions/apiData";
+import { useAppSelector, useAppDispatch } from "../helpers/redux-hooks";
+import { setLanguage, setCurrentStep, showSend, setUser } from "../store/reducers/app";
+import { fetchShops } from "../store/reducers/ActionCreators";
 
-// @ts-ignore
-import I18n from "i18n-js";
-import ru from "../i18n/ru.json";
-
-import en from "../i18n/en.json";
 import "../media/css/main.css";
 
 interface Props {
@@ -25,13 +19,13 @@ interface Props {
   language: string;
   /** Display send step */
   show_send: boolean;
+  /** User */
+  user?: string;
 }
 
 const App: FC<Props> = (props: Props) => {
-  const dispatch = useDispatch();
-  const { currentStep, language } = useSelector(
-    (state: RootState) => state.app
-  );
+  const dispatch = useAppDispatch();
+  const { currentStep, language } = useAppSelector(state => state.app);
 
   const orderRef = useRef();
   const basketRef = useRef();
@@ -49,10 +43,10 @@ const App: FC<Props> = (props: Props) => {
       steps.send = sendRef;
       dispatch(showSend());
     }
+    props.user && dispatch(setUser(props.user));
     let initialStep = window.location.pathname.slice(1);
     dispatch(setCurrentStep(steps[initialStep] ? initialStep : 'order'));
-    I18n.translations["en"] = en;
-    I18n.translations["ru"] = ru;
+    dispatch(setLanguage(props.language));
   }, []);
 
   useEffect(() => {
@@ -77,7 +71,7 @@ const App: FC<Props> = (props: Props) => {
         }
       })
     };
-    // window.addEventListener("scroll", getPosition);
+    window.addEventListener("scroll", getPosition);
 
     return () => {
       window.removeEventListener("scroll", getLocationStep);
@@ -86,10 +80,7 @@ const App: FC<Props> = (props: Props) => {
   }, [currentStep]);
 
   useEffect(() => {
-    console.log(language)
-    I18n.locale = language || props.language;
-    dispatch(setLanguage(language || props.language));
-    // dispatch(setShops());
+    language && dispatch(fetchShops());
   }, [language]);
 
   // обработка нажатия навигации
@@ -111,7 +102,6 @@ const App: FC<Props> = (props: Props) => {
         <Header />
         <div className="content_container">
           <div className="content">
-            <div>{language}</div>
             <Order ref={orderRef} />
             <Basket ref={basketRef} />
             <Customer ref={customerRef} />

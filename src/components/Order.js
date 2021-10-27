@@ -3,7 +3,7 @@ import { CustomInput } from "./UI/CustomInput";
 import { CustomSelect } from "./UI/CustomSelect";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setDetail } from "../store/actions/details";
+import { setDetail } from "../store/reducers/details";
 
 export const Order = forwardRef((props, ref) => {
 	const dispatch = useDispatch();
@@ -56,7 +56,7 @@ export const Order = forwardRef((props, ref) => {
 	}));
 
 	const handleDetail = (name, value) => {
-		dispatch(setDetail(name, value));
+		dispatch(setDetail({name, value}));
 	};
 
 	if (isLoading) {

@@ -1,5 +1,4 @@
 import React from 'react';
-import I18n from "i18n-js";
 
 type ErrorClassType = string | undefined;
 interface ICustomInput {
@@ -31,11 +30,11 @@ export const CustomInput: React.FC<ICustomInput> = ({error, setError, label, nam
 
     return (
         <li className="list__item">
-            <label className="order-form__label">
-                <span className="order-form__span">{I18n.t(label)}</span>
+            <label className="modal-form__label">
+                <span className="modal-form__span">{label}</span>
                 <div className={errorClass}>
                     <input
-                        className="order-form__input"
+                        className="modal-form__input"
                         type={type}
                         name={name} 
                         onChange={handleChange} 

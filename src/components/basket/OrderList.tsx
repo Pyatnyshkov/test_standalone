@@ -9,7 +9,7 @@ interface IOrderList {
 export const OrderList: React.FC<IOrderList> = ({list, setActive}) => {
     const keys: string[] = Object.keys(list);
     const listItems = keys.map((key: string) => 
-        <OrderItem key={key} value={list[key]} id={key} setActive={setActive}/>
+        <OrderItem key={key} value={list[key]} id={key} setActive={setActive} />
     )
 
     return (

@@ -71,7 +71,7 @@
     border-radius: 0 5px 0 0 ;
 }
 
-.order-input-list {
+.modal-input-list {
     margin: 0;
     padding: 0;
     list-style-type: none;
@@ -83,17 +83,17 @@
     overflow-y: scroll;
 }
 
-.order-form__label {
+.modal-form__label {
     position: relative;
     display: block;
 }
 
-.order-form__span {
+.modal-form__span {
     display: block;
     margin-bottom: 5px;
 }
 
-.order-form__input {
+.modal-form__input {
     width: 100%;
     border: 1px solid #ced4da;
     color: #495057;
@@ -123,7 +123,7 @@
     justify-content: space-between;
 }
 
-.order-item__submit {
+.modal-item__submit {
     width: 60%;
 }
 
@@ -158,4 +158,30 @@
 
 .list__item .error__select > div > div  {
     border-color: tomato;
+}
+
+.addition-label {
+    display: inline-block;
+    width: 50%;
+}
+
+.addition-label input {
+    display: none;
+}
+
+.addition__span {
+    cursor: pointer;
+    display: block;
+    border: 1px solid #ebebeb;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+}
+
+.addition-label input:checked + .addition__span {
+    background-color: #ebebeb;
+}
+
+.add-list {
+    margin-top: 20px;
 }

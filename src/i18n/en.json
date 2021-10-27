@@ -153,6 +153,7 @@
    "Measure": "Measure",
    "Host": "Host",
    "Сlearing": "Сlearing",
+   "Description": "Description",
    "Modal open button": "Modal open button",
    "Item edit button": "Item edit button",
    "Item delete button": "Item delete button",
@@ -160,5 +161,9 @@
    "Marking": "Marking",
    "Documents": "Documents",
    "Payment methods": "Payment methods",
-   "Carrier code": "Carrier code"
+   "Carrier code": "Carrier code",
+   "KT": "KT",
+   "EXC": "EXC",
+   "COC": "COC",
+   "HED": "HED" 
 }

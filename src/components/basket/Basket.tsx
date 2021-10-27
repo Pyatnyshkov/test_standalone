@@ -43,7 +43,9 @@ export const Basket = forwardRef((props, ref: any) => {
 			}
 
 			<div ref={modalRef} className="modal" onClick={() => setModalActive(false)}>
-				{modalActive ? <OrderModal setActive={setModalActive}/> : null}
+				{ 
+					modalActive ? <OrderModal setActive={setModalActive}/> : null
+				}
 			</div>
 			
 		</div>

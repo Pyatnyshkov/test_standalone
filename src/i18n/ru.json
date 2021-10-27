@@ -154,6 +154,7 @@
    "Measure": "Единица измерения",
    "Host": "Провайдер",
    "Сlearing": "Клиринг",
+   "Description": "Описание",
    "Modal open button": "Кнопка открытия модального окна",
    "Item edit button": "Кнопка редактирования айтема",
    "Item delete button": "Кнопка удаления айтема",
@@ -161,5 +162,9 @@
    "Marking": "Маркировка",
    "Documents": "Документы",
    "Payment methods": "Способы оплаты",
-   "Carrier code": "Код перевозчика"
+   "Carrier code": "Код перевозчика",
+   "KT": "KT",
+   "EXC": "EXC",
+   "COC": "COC",
+   "HED": "HED"
 }

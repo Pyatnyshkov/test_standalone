@@ -1,14 +1,19 @@
 import { createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 export interface apiState {
-	shops: apiElem[],
-	currencies: apiElem[],
-	acquires: apiElem[],
-	cardTypes: apiElem[],
+	shops: apiShopElem[],
+	currencies: apiShopElem[],
+	acquires: apiShopElem[],
+	cardTypes: apiShopElem[],
 	measurements: apiElem[],
 	categories: apiElem[]
 }
-
+// добавил типы данных для id и name, без них выдавал ошибку, так как мы не указали тип данных для id | name
+interface apiShopElem {
+	id: string,
+	name: string
+	code: string
+}
 interface apiElem {
 	label: string,
 	value: string | number
@@ -36,16 +41,16 @@ const apiSlice = createSlice({
 	name: "api",
 	initialState,
 	reducers: {
-		setShops(state, action: PayloadAction<apiElem[]>) {
+		setShops(state, action: PayloadAction<apiShopElem[]>) {
 			state.shops = action.payload
 		},
-		setCurrencies(state, action: PayloadAction<apiElem[]>) {
+		setCurrencies(state, action: PayloadAction<apiShopElem[]>) {
 			state.currencies = action.payload
 		},
-		setAcquires(state, action: PayloadAction<apiElem[]>) {
+		setAcquires(state, action: PayloadAction<apiShopElem[]>) {
 			state.acquires = action.payload
 		},
-		setCardTypes(state, action: PayloadAction<apiElem[]>) {
+		setCardTypes(state, action: PayloadAction<apiShopElem[]>) {
 			state.cardTypes = action.payload
 		},
 	},

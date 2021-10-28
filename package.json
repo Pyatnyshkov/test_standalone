@@ -49,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "@types/i18n-js": "^3.8.2",
     "redux-devtools-extension": "^2.13.9"
   }
 }

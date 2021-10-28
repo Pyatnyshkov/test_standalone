@@ -12,10 +12,14 @@
    "Send options":"Send options",
    "Result":"Result",
    "Shop":"Shop",
+   "Order ID": "Order ID",
+   "Acquirer": "Acquirer",
+   "Reccuring": "Reccuring",
    "Order number":"Order number",
    "Currency":"Currency",
    "Timeout":"Timeout",
    "Language":"Language",
+   "Profile ID": "Profile ID",
    "Change language": "Change language",
    "Next":"Next",
    "Back":"Back",
@@ -146,7 +150,6 @@
    "error 404 title": "Network error",
    "error 404 text": "There was a network error, check your Internet connection",
    "Cart is empty": "Cart is empty",
-   "Order ID": "Order ID",
    "Time to pay": "Time to pay",
    "Comment": "Comment",
    "Card type": "Card type",
@@ -169,5 +172,5 @@
    "KT": "KT",
    "EXC": "EXC",
    "COC": "COC",
-   "HED": "HED" 
+   "HED": "HED"
 }

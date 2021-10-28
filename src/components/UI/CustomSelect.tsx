@@ -7,8 +7,9 @@ interface ICustomSelect {
     setError?: any, 
     name: string, 
     label: string, 
-    options: object[], 
-    onChange: (name: string, value: string | number) => void, 
+    options: object[],
+    defaultValue?: any,
+    onChange: (name: string, value: string | number) => void,
 };
 
 export const CustomSelect: React.FC<ICustomSelect> = ({error, setError, name, label, options, onChange}) => {
@@ -26,14 +27,16 @@ export const CustomSelect: React.FC<ICustomSelect> = ({error, setError, name, la
         // }
         onChange(key.name, value.value);
     }
+
     return (
         <li className="list__item">
             <span className="modal-form__span">{label}</span>
             <div className={errorClass}>
-                <Select 
-                    name={name} 
+                <Select
+                    name={name}
                     options={options} 
                     onChange={saveSelectName}
+                    defaultValue={options[0]}
                 />
             </div>
             {

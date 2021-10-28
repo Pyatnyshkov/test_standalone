@@ -100,11 +100,20 @@
     border-radius: .25rem;
     display: block;
     height: 36px;
+    font-size: 14px;
+    line-height: 36px;
+}
+.modal-form__checkbox {
+    width: 7%;
+    border: 1px solid #ced4da;
+    color: #495057;
+    border-radius: .25rem;
+    display: block;
+    height: 36px;
     padding: 8px 7px;
     font-size: 14px;
     line-height: 36px;
 }
-
 .list__item {
     margin-bottom: 20px;
     position: relative;

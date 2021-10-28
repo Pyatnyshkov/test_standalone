@@ -13,6 +13,7 @@ import { setLanguage, setCurrentStep, showSend, setUser } from "../store/reducer
 import { fetchShops } from "../store/reducers/ActionCreators";
 
 import "../media/css/main.css";
+import OrderDetails from "./OrderDetails";
 
 interface Props {
   /** Interface language */
@@ -102,7 +103,9 @@ const App: FC<Props> = (props: Props) => {
         <Header />
         <div className="content_container">
           <div className="content">
-            <Order ref={orderRef} />
+            <div>{language}</div>
+            {/*<Order ref={orderRef} />*/}
+            <OrderDetails ref={orderRef}/>
             <Basket ref={basketRef} />
             <Customer ref={customerRef} />
             {props.show_send && <Send ref={sendRef} />}

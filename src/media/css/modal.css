@@ -185,3 +185,9 @@
 .add-list {
     margin-top: 20px;
 }
+
+.documents-list-item {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-bottom: 10px;
+}

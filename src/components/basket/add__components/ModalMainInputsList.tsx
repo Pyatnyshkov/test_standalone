@@ -7,27 +7,26 @@ import { CustomSelect } from '../../UI/CustomSelect';
 
 interface IModalMainInputsList {
     orderState: {
-        sum: number,
+        sum: number | string,
         ref: string,
         name: string,
         number: string,
         typename: string,
-        quantity: number,
+        quantity: number | string,
         descr: string,
         host: string,
         accode: string,
     },
-    setOrderState: React.Dispatch<React.SetStateAction<any>>
+    setOrderState: React.Dispatch<React.SetStateAction<any>>,
 }
 
 export const ModalMainInputsList: React.FC<IModalMainInputsList> = ({orderState, setOrderState}) => {
-    //? смена стейта onChange у инпутов
     const setData = (name: string, value: string | number) => {
         const newValue = {
             ...orderState,
             [name]: value
-        }
-        setOrderState(newValue)
+        };
+        setOrderState(newValue);
     }
 
     return (
@@ -38,7 +37,7 @@ export const ModalMainInputsList: React.FC<IModalMainInputsList> = ({orderState,
             <CustomSelect name={'measure'} label={I18n.t('Measure')} options={measureOptions} onChange={setData} /> 
             { 
                 orderState.typename === 'goods' ? 
-                    '' : <CustomSelect name={'typename'} label={I18n.t('Category')} options={typenameOptions} onChange={setData}/> 
+                    '' : <CustomSelect name={'typename'} label={I18n.t('Category')} options={typenameOptions} onChange={setData} /> 
             }
             <CustomSelect name={'host'} label={I18n.t('Host')} options={hostOptions} onChange={setData} /> 
             <CustomSelect name={'clearing'} label={I18n.t('Сlearing')} options={clearingOptions} onChange={setData} /> 

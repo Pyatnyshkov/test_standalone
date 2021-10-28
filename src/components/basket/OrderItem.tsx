@@ -17,18 +17,18 @@ interface IOrderItem {
         sumCurrency: string,
     },
     id: string,
-    setActive: React.Dispatch<React.SetStateAction<boolean>>
+    setActive: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
 export const OrderItem: React.FC<IOrderItem> = ({id, value, setActive}) => {
     const deleteItem = (event: SyntheticEvent, key: string) => {
-        console.log('>>deleteItem', event, key)
+        console.log('>>deleteItem', event, key);
         event.preventDefault();
         // dispatch(deleteBasketItem(key)); //удаляем элемент через изметный ключ
     }
 
     const editItem = (event: SyntheticEvent, key: string) => {
-        console.log('>>editItem', event, key)
+        console.log('>>editItem', event, key);
         event.preventDefault();
         // dispatch(editBasketItemKey(key)); //записываем ключ для редактирования
         setActive(true);
@@ -37,6 +37,7 @@ export const OrderItem: React.FC<IOrderItem> = ({id, value, setActive}) => {
     return (
         <li className="order__item">
             <figure className="order__figure">
+                {/* тестовая статика! */}
                 <img src={value.typename === 'goods' ? catGoods : catNoGoods} alt="categoryIcon" />
             </figure>
             <span className="order__span">{value.name}</span>
@@ -52,13 +53,13 @@ export const OrderItem: React.FC<IOrderItem> = ({id, value, setActive}) => {
                 <button 
                     type="button"
                     className="order-edit__button"
-                    aria-label={I18n.t("Item edit button")}
+                    aria-label={ I18n.t("Item edit button") }
                     onClick={(event) => editItem(event, id)}
                 ></button>
                 <button 
                     type="button"
                     className="order-delete__button"
-                    aria-label={I18n.t("Item delete button")}
+                    aria-label={ I18n.t("Item delete button") }
                     onClick={(event) => deleteItem(event, id)}
                 ></button>
             </div>

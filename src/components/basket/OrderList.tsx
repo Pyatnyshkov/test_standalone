@@ -3,7 +3,7 @@ import { OrderItem } from './OrderItem';
 
 interface IOrderList {
     list: any,
-    setActive: React.Dispatch<React.SetStateAction<boolean>>
+    setActive: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
 export const OrderList: React.FC<IOrderList> = ({list, setActive}) => {

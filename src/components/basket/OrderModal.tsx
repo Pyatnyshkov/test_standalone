@@ -17,8 +17,9 @@ interface IOrderModal {
 }
 
 export const OrderModal: React.FC<IOrderModal> = ({setActive}) => {
+    //* общий стейт корзины
     const [orderState, setOrderState] = useState({
-        sum: 0,
+        sum: '',
         ref: '',
         name: '',
         number: '',
@@ -26,7 +27,7 @@ export const OrderModal: React.FC<IOrderModal> = ({setActive}) => {
         typename: 'goods',
         host: '',
         clearing: '',
-        quantity: 0,
+        quantity: '',
         descr: '',
         accode: '',
         marking_info: {
@@ -35,25 +36,18 @@ export const OrderModal: React.FC<IOrderModal> = ({setActive}) => {
             coc: '',
             hed: '',
         },
-        documents: []
+        documents: ['документ 1', 'документ 2', 'документ 3'],
+        // documents: [],
     });
+    //* стейт активности радио (при смене чека, меняется и typename в orderState)
     const [activeRadio, setActiveRadio] = useState('goods');
+    //* стейт дополнительных вкладок фискализация/маркировка/документы/способы оплаты
     const [additionRadioState, setAdditionRadioState] = useState('');
     // const keyToEdit = useSelector((state: RootState) => state.basket.editItemKey);
     // const keyToAdd = 'order__item__' + Object.keys(useSelector((state: RootState) => state.basket.items)).length; //* генерируем ключ для нового айтема
     // const editItem = useSelector((state: RootState) => state.basket.items[keyToEdit]); //* достаем айтем для редактирования
 
-    //* при мaунте компонента проверяем наличие ключа редактирования,
-    //* при его наличии меняем стейт orderState
-    //* если ключа нет, то заново ререндерим ордер до дефолта
-    // useEffect(() => {
-        // if(keyToEdit) {
-            // setOrderState(editItem);
-        // }
-    // }, [keyToEdit, editItem])
-
     console.log('>> orderState', orderState);
-    console.log('>> additionRadioState', additionRadioState);
 
     const submitForm = (event: SyntheticEvent) => {
         event.preventDefault();
@@ -76,10 +70,9 @@ export const OrderModal: React.FC<IOrderModal> = ({setActive}) => {
             <form className="order-form basket-modal" onClick={(e) => e.stopPropagation()} onSubmit={(event) => submitForm(event)}>
                 <ModalHeader activeRadio={activeRadio} setActiveRadio={setActiveRadio} orderState={orderState} setOrderState={setOrderState} />
                 <div className="scrolling-wrapp">
-
                     <ModalMainInputsList orderState={orderState} setOrderState={setOrderState} />
                     <AdditionalRadioList orderState={orderState} setAdditionRadioState={setAdditionRadioState}/>
-                    
+
                     {
                         additionRadioState === "Fiscalization" ? <Fiscalization /> : 
                         additionRadioState === "Marking" ? <Marking orderState={orderState} setOrderState={setOrderState} /> : 
@@ -88,8 +81,8 @@ export const OrderModal: React.FC<IOrderModal> = ({setActive}) => {
                     }
                     
                     <div className="form-buttons">
-                        <SubmitButton className="modal-item__submit" type={'submit'} text={'Save'} />
-                        <CloseButton className="close-modal__button" type={'button'} text={'Close'} setActive={setActive}/>
+                        <SubmitButton className="modal-item__submit" type={'submit'} name={'Save'} />
+                        <CloseButton className="close-modal__button" type={'button'} name={'Close'} setActive={setActive} />
                     </div>
                 </div>
             </form>

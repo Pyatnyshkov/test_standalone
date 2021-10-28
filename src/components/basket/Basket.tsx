@@ -22,16 +22,16 @@ export const Basket = forwardRef((props, ref: any) => {
 	// * анимация появления/исчезноваения модального окна
 	modalActive ? 
 		fadeIn(modalRef.current, 200) : 
-		fadeOut(modalRef.current, 200)
+		fadeOut(modalRef.current, 200);
 
 
 	return (
 		<div className="basket content_elem" ref={ref}>
 			<div className="basket-header">
-				<button 
+				<button
 					type="button" 
 					className="open-modal-button" 
-					aria-label={I18n.t("Modal open button")} 
+					aria-label={ I18n.t("Modal open button") } 
 					onClick={() => setModalActive(true)}>
 				</button>
 			</div>
@@ -39,10 +39,10 @@ export const Basket = forwardRef((props, ref: any) => {
 			{ 
 				orderItemsLenght ? 
 					<OrderList list={order.items} setActive={setModalActive} /> : 
-					<span className="basket__title">{I18n.t("Cart is empty")}</span>
+					<span className="basket__title">{ I18n.t("Cart is empty") }</span>
 			}
 
-			<div ref={modalRef} className="modal" onClick={() => setModalActive(false)}>
+			<div ref={modalRef} className="modal" onClick={() => setModalActive(false)} >
 				{ 
 					modalActive ? <OrderModal setActive={setModalActive}/> : null
 				}

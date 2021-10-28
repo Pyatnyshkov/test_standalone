@@ -13,10 +13,10 @@ export const ModalHeader: React.FC<IModalHeader> = ({activeRadio, setActiveRadio
         const value = event.target.value;
         const newValue = {
             ...orderState,
-            typename: value
-        }
-        setOrderState(newValue)
-        setActiveRadio(value)
+            typename: value,
+        };
+        setOrderState(newValue);
+        setActiveRadio(value);
     }
 
     return (
@@ -30,7 +30,7 @@ export const ModalHeader: React.FC<IModalHeader> = ({activeRadio, setActiveRadio
                     type="radio" 
                     onChange={changeRadio} 
                 />
-                <span className="modal-header__span">{I18n.t("Goods")}</span>
+                <span className="modal-header__span">{ I18n.t("Goods") }</span>
             </label>
             <label className="modal-header-label">
                 <input 
@@ -41,7 +41,7 @@ export const ModalHeader: React.FC<IModalHeader> = ({activeRadio, setActiveRadio
                     type="radio" 
                     onChange={changeRadio} 
                 />
-                <span className="modal-header__span">{I18n.t("Service")}</span>
+                <span className="modal-header__span">{ I18n.t("Service") }</span>
             </label>
         </div>
     )

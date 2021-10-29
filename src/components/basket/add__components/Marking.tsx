@@ -1,4 +1,5 @@
 import React from 'react';
+import I18n from "i18n-js";
 import { CustomInput } from '../../UI/CustomInput';
 
 interface IMarking {
@@ -29,10 +30,10 @@ export const Marking: React.FC<IMarking> = ({orderState, setOrderState}) => {
 
     return(
         <ul className="add-list marking-list">
-            <CustomInput name={'kt'} value={markingInfo.kt} label={'KT'} type={'text'} onChange={setData} />
-            <CustomInput name={'exc'} value={markingInfo.exc} label={'EXC'} type={'text'} onChange={setData} />
-            <CustomInput name={'coc'} value={markingInfo.coc} label={'COC'} type={'text'} onChange={setData} />
-            <CustomInput name={'hed'} value={markingInfo.hed} label={'HED'} type={'text'} onChange={setData} />
+            <CustomInput name={'kt'} value={markingInfo.kt} label={ I18n.t('KT') } type={'text'} onChange={setData} />
+            <CustomInput name={'exc'} value={markingInfo.exc} label={ I18n.t('EXC')} type={'text'} onChange={setData} />
+            <CustomInput name={'coc'} value={markingInfo.coc} label={ I18n.t('COC') } type={'text'} onChange={setData} />
+            <CustomInput name={'hed'} value={markingInfo.hed} label={ I18n.t('HED') } type={'text'} onChange={setData} />
         </ul>
     )
 }

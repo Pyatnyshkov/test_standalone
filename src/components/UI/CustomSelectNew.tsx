@@ -10,9 +10,11 @@ interface ICustomSelect {
     options: any,
     defaultValue?: any,
     onChange: (name: string, value: string | number) => void,
+    value: string | number,
 };
 
-export const CustomSelect: React.FC<ICustomSelect> = ({error, setError, name, label, options, onChange}) => {
+export const CustomSelect: React.FC<ICustomSelect> = ({error, setError, name, label, options, onChange, value}) => {
+    const selectState = value ? { 'name': value, 'label': value } : { 'name': '', 'label': 'Choosen...' };
     const errorClass: ErrorClassType = error ? 'error__select' : undefined;
     const saveSelectName = (value: any, key: any) => {
         //! обработку закоментировал, потому что не определились пока
@@ -36,6 +38,7 @@ export const CustomSelect: React.FC<ICustomSelect> = ({error, setError, name, la
                     name={name}
                     options={options} 
                     onChange={saveSelectName}
+                    value={selectState}
                 />
             </div>
             {

@@ -172,5 +172,12 @@
    "KT": "KT",
    "EXC": "EXC",
    "COC": "COC",
-   "HED": "HED"
+   "HED": "HED",
+   "Tax system": "Tax system",
+   "Calculation subject attribute": "Calculation subject attribute",
+   "Calculation method attribute": "Calculation method attribute",
+   "Agent sign": "Agent sign",
+   "Legal entity of the supplier": "Legal entity of the supplier",
+   "ITN": "ITN",
+   "Phone_fisc": "Phone"
 }

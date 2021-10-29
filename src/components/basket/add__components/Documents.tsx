@@ -21,8 +21,6 @@ export const Documents: React.FC<IDocuments> = ({orderState, setOrderState}) => 
     const keysArray = Array.from(Array(arrayLength).keys());
 
     const deleteDocumentInput = (event: SyntheticEvent, key: number) => {
-        console.log('>>orderStateArray', orderStateArray);
-        console.log('>>key', key);
         const newArray = orderStateArray.filter((item, index) => index !== key)
         const newValue = {
             ...orderState,

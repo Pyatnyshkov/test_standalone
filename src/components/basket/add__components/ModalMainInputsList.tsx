@@ -3,25 +3,27 @@ import React from 'react';
 import I18n from "i18n-js";
 
 import { CustomInput } from '../../UI/CustomInput';
-import { CustomSelect } from '../../UI/CustomSelect';
+import { CustomSelect } from '../../UI/CustomSelectNew';
 
 interface IModalMainInputsList {
     orderState: {
-        sum: number | string,
+        sum?: number | string,
         ref: string,
         name: string,
         number: string,
-        typename: string,
-        quantity: number | string,
+        typename: any,
+        quantity: number | null,
         descr: string,
-        host: string,
+        host: any,
         accode: string,
+        measure: any,
+        clearing: any,
     },
     setOrderState: React.Dispatch<React.SetStateAction<any>>,
 }
 
 export const ModalMainInputsList: React.FC<IModalMainInputsList> = ({orderState, setOrderState}) => {
-    const setData = (name: string, value: string | number) => {
+    const setData = (name: string, value: string | number | null) => {
         const newValue = {
             ...orderState,
             [name]: value
@@ -34,14 +36,38 @@ export const ModalMainInputsList: React.FC<IModalMainInputsList> = ({orderState,
             <CustomInput name={'ref'} value={orderState.ref} label={I18n.t('ID')} type={'text'} onChange={setData} />
             <CustomInput name={'name'} value={orderState.name} label={I18n.t('Title')} type={'text'} onChange={setData} />
             <CustomInput name={'number'} value={orderState.number} label={I18n.t('Number')} type={'text'} onChange={setData} />
-            <CustomSelect name={'measure'} label={I18n.t('Measure')} options={measureOptions} onChange={setData} /> 
+            <CustomSelect 
+                name={'measure'} 
+                label={I18n.t('Measure')} 
+                options={measureOptions} 
+                onChange={setData} 
+                value={orderState.measure || null}
+            /> 
             { 
                 orderState.typename === 'goods' ? 
-                    '' : <CustomSelect name={'typename'} label={I18n.t('Category')} options={typenameOptions} onChange={setData} /> 
+                    '' : <CustomSelect 
+                            name={'typename'} 
+                            label={I18n.t('Category')} 
+                            options={typenameOptions} 
+                            onChange={setData} 
+                            value={orderState.typename || null}
+                        /> 
             }
-            <CustomSelect name={'host'} label={I18n.t('Host')} options={hostOptions} onChange={setData} /> 
-            <CustomSelect name={'clearing'} label={I18n.t('Сlearing')} options={clearingOptions} onChange={setData} /> 
-            <CustomInput name={'quantity'} value={orderState.quantity} label={I18n.t('Quantity')} type={'number'} onChange={setData} />
+            <CustomSelect
+                name={'host'} 
+                label={I18n.t('Host')} 
+                options={hostOptions} 
+                onChange={setData} 
+                value={orderState.host || null}
+            /> 
+            <CustomSelect 
+                name={'clearing'} 
+                label={I18n.t('Сlearing')} 
+                options={clearingOptions} 
+                onChange={setData} 
+                value={orderState.clearing || null}
+            /> 
+            <CustomInput name={'quantity'} value={orderState.quantity || ''} label={I18n.t('Quantity')} type={'number'} onChange={setData} />
             <CustomInput name={'descr'} value={orderState.descr} label={I18n.t('Description')} type={'textarea'} onChange={setData} />
             {
                 orderState.host === 'sirena' ? 

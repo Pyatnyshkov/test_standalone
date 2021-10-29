@@ -173,5 +173,12 @@
    "KT": "KT",
    "EXC": "EXC",
    "COC": "COC",
-   "HED": "HED"
+   "HED": "HED",
+   "Tax system": "Система налогооблажения",
+   "Calculation subject attribute": "Признак предмета расчета",
+   "Calculation method attribute": "Признак способа расчета",
+   "Agent sign": "Признак агента",
+   "Legal entity of the supplier": "Юридическое лицо поставщика",
+   "ITN": "ИНН",
+   "Phone_fisc": "Телефон"
 }

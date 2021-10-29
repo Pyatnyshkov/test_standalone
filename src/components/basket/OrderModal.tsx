@@ -17,27 +17,54 @@ interface IOrderModal {
 }
 
 export const OrderModal: React.FC<IOrderModal> = ({setActive}) => {
-    //* общий стейт корзины
     const [orderState, setOrderState] = useState({
-        sum: '',
-        ref: '',
-        name: '',
-        number: '',
-        measure: '',
         typename: 'goods',
         host: '',
+        number: '',
+        measure: '',
+        quantity: null,
+        name: '',
+        amount: {
+            amount: null,
+            currency: ''
+        },
         clearing: '',
-        quantity: '',
         descr: '',
+        ref: '',
         accode: '',
+        taxation_system: '',
+        taxation_item_type: '',
+        taxation_item_settlement_method: '',
+        agent_info: {
+            type: '',
+        },
+        supplier_info: {
+            name: '',
+            inn: '',
+            phone: '',
+        },
+        taxes: [
+            {
+                attributes: {
+                    type: '',
+                },
+                percentage: '',
+                amount: {
+                    amount: null,
+                    currency: '',
+                },
+                source: '',
+                name: '',
+            },
+        ],
+        documents: [],
+        shopref: '',
         marking_info: {
             kt: '',
             exc: '',
             coc: '',
             hed: '',
         },
-        documents: ['документ 1', 'документ 2', 'документ 3'],
-        // documents: [],
     });
     //* стейт активности радио (при смене чека, меняется и typename в orderState)
     const [activeRadio, setActiveRadio] = useState('goods');
@@ -67,24 +94,24 @@ export const OrderModal: React.FC<IOrderModal> = ({setActive}) => {
     }
 
     return (
-            <form className="order-form basket-modal" onClick={(e) => e.stopPropagation()} onSubmit={(event) => submitForm(event)}>
-                <ModalHeader activeRadio={activeRadio} setActiveRadio={setActiveRadio} orderState={orderState} setOrderState={setOrderState} />
-                <div className="scrolling-wrapp">
-                    <ModalMainInputsList orderState={orderState} setOrderState={setOrderState} />
-                    <AdditionalRadioList orderState={orderState} setAdditionRadioState={setAdditionRadioState}/>
+        <form className="order-form basket-modal" onClick={(e) => e.stopPropagation()} onSubmit={(event) => submitForm(event)}>
+            <ModalHeader activeRadio={activeRadio} setActiveRadio={setActiveRadio} orderState={orderState} setOrderState={setOrderState} />
+            <div className="scrolling-wrapp">
+                <ModalMainInputsList orderState={orderState} setOrderState={setOrderState} />
+                <AdditionalRadioList orderState={orderState} setAdditionRadioState={setAdditionRadioState}/>
 
-                    {
-                        additionRadioState === "Fiscalization" ? <Fiscalization /> : 
-                        additionRadioState === "Marking" ? <Marking orderState={orderState} setOrderState={setOrderState} /> : 
-                        additionRadioState === "Documents" ? <Documents orderState={orderState} setOrderState={setOrderState} /> : 
-                        additionRadioState === "PaymentMethods" ? <PaymentMethods /> : null
-                    }
-                    
-                    <div className="form-buttons">
-                        <SubmitButton className="modal-item__submit" type={'submit'} name={'Save'} />
-                        <CloseButton className="close-modal__button" type={'button'} name={'Close'} setActive={setActive} />
-                    </div>
+                {
+                    additionRadioState === "Fiscalization" ? <Fiscalization orderState={orderState} setOrderState={setOrderState} /> : 
+                    additionRadioState === "Marking" ? <Marking orderState={orderState} setOrderState={setOrderState} /> : 
+                    additionRadioState === "Documents" ? <Documents orderState={orderState} setOrderState={setOrderState} /> : 
+                    additionRadioState === "PaymentMethods" ? <PaymentMethods /> : null
+                }
+                
+                <div className="form-buttons">
+                    <SubmitButton className="modal-item__submit" type={'submit'} name={'Save'} />
+                    <CloseButton className="close-modal__button" type={'button'} name={'Close'} setActive={setActive} />
                 </div>
-            </form>
+            </div>
+        </form>
     )
 }

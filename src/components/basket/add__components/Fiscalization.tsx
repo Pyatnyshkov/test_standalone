@@ -101,12 +101,12 @@ export const Fiscalization: React.FC<IFiscalization> = ({orderState, setOrderSta
 
 //! тестовые-статичные данные
 const taxOptions = [
-    { value: 'general', label: 'Общее' },
-    { value: 'simple_income', label: 'Простой доход' },
-    { value: 'simple_profit', label: 'Простая прибыль' },
-    { value: 'imputed_income', label: 'Вмененный доход' },
-    { value: 'unified_agricultural', label: 'Единый сельскохозяйственный' },
-    { value: 'patent', label: 'Патент' },
+    { value: 'general', label: 'general' },
+    { value: 'simple_income', label: 'simple_income' },
+    { value: 'simple_profit', label: 'simple_profit' },
+    { value: 'imputed_income', label: 'imputed_income' },
+    { value: 'unified_agricultural', label: 'unified_agricultural' },
+    { value: 'patent', label: 'patent' },
 ]
 
 const taxRateOptions = [
@@ -120,29 +120,29 @@ const taxRateOptions = [
 ]
 
 const taxationItemTypeOption = [
-    { value: 'commodity', label: 'Товар' },
-    { value: 'excise', label: 'Акциз' },
-    { value: 'job', label: 'Работа' },
-    { value: 'service', label: 'Услуга' },
-    { value: 'gambling_bet', label: 'Ставка?' },
-    { value: 'gambling_win', label: 'Выигрыш?' },
-    { value: 'lottery_bet', label: 'Лотерея' },
-    { value: 'lottery_win', label: 'Выигрыш в лотерее' },
-    { value: 'intellectual_activity', label: 'Интелектуальная деятельность' },
-    { value: 'payment', label: 'Оплата' },
-    { value: 'agent_commission', label: 'Комиссия агента' },
-    { value: 'composite', label: 'Составной' },
-    { value: 'other', label: 'Другое' },
+    { value: 'commodity', label: 'commodity' },
+    { value: 'excise', label: 'excise' },
+    { value: 'job', label: 'job' },
+    { value: 'service', label: 'service' },
+    { value: 'gambling_bet', label: 'gambling_bet' },
+    { value: 'gambling_win', label: 'gambling_win' },
+    { value: 'lottery_bet', label: 'lottery_bet' },
+    { value: 'lottery_win', label: 'lottery_win' },
+    { value: 'intellectual_activity', label: 'intellectual_activity' },
+    { value: 'payment', label: 'payment' },
+    { value: 'agent_commission', label: 'agent_commission' },
+    { value: 'composite', label: 'composite' },
+    { value: 'other', label: 'other' },
 ]
 
 const taxationItemSettlementMethodOptions = [
-    { value: 'full_prepayment', label: 'Полная предоплата' },
-    { value: 'partial_prepayment', label: 'Частичная предоплата' },
-    { value: 'advance', label: 'Аванс' },
-    { value: 'full_payment', label: 'Полная оплата' },
-    { value: 'partial_payment', label: 'Частичная оплата' },
-    { value: 'credit', label: 'Кредит' },
-    { value: 'credit_payment', label: 'Оплата в кредит' },
+    { value: 'full_prepayment', label: 'full_prepayment' },
+    { value: 'partial_prepayment', label: 'partial_prepayment' },
+    { value: 'advance', label: 'advance' },
+    { value: 'full_payment', label: 'full_payment' },
+    { value: 'partial_payment', label: 'partial_payment' },
+    { value: 'credit', label: 'credit' },
+    { value: 'credit_payment', label: 'credit_payment' },
 ]
 
 const agentInfoTypeOptions = [

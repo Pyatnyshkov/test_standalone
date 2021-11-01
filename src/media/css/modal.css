@@ -104,7 +104,7 @@
     line-height: 36px;
 }
 .modal-form__checkbox {
-    width: 7%;
+    width: 3%;
     border: 1px solid #ced4da;
     color: #495057;
     border-radius: .25rem;
@@ -113,6 +113,25 @@
     padding: 8px 7px;
     font-size: 14px;
     line-height: 36px;
+}
+
+.modal-payment__item {
+    border: 1px solid #ced4da;
+    color: #495057;
+    border-radius: .25rem;
+    padding: 20px 10px;
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-around;
+    cursor: pointer;
+}
+.modal-payment__logos {
+    width: 50%;
+    background: url("../img/icons/visa.png") no-repeat left / contain,
+    url("../img/icons/mastercard.png") no-repeat left 50px center / contain,
+    url("../img/icons/maestro.png") no-repeat center / contain,
+    url("../img/icons/mir.png") no-repeat right / contain
+;
 }
 .list__item {
     margin-bottom: 20px;

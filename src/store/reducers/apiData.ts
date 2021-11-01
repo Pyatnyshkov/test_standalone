@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 export interface apiState {
-	shops: apiShopElem[],
-	currencies: apiShopElem[],
-	acquires: apiShopElem[],
-	cardTypes: apiShopElem[],
+	shops: apiElem[],
+	currencies: apiElem[],
+	acquires: apiElem[],
+	cardTypes: apiElem[],
 	measurements: apiElem[],
 	categories: apiElem[]
 }
@@ -42,16 +42,16 @@ const apiSlice = createSlice({
 	name: "api",
 	initialState,
 	reducers: {
-		setShops(state, action: PayloadAction<apiShopElem[]>) {
+		setShops(state, action: PayloadAction<apiElem[]>) {
 			state.shops = action.payload
 		},
-		setCurrencies(state, action: PayloadAction<apiShopElem[]>) {
+		setCurrencies(state, action: PayloadAction<apiElem[]>) {
 			state.currencies = action.payload
 		},
-		setAcquires(state, action: PayloadAction<apiShopElem[]>) {
+		setAcquires(state, action: PayloadAction<apiElem[]>) {
 			state.acquires = action.payload
 		},
-		setCardTypes(state, action: PayloadAction<apiShopElem[]>) {
+		setCardTypes(state, action: PayloadAction<apiElem[]>) {
 			state.cardTypes = action.payload
 		},
 	},

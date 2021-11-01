@@ -15,7 +15,9 @@ export interface DetailsState {
 	returnURLOk: string,
 	returnURLFault: string,
 	showcase: string,
-	payMode: string
+	payMode: string,
+	isChecked: boolean,
+	isClosed: boolean
 }
 
 interface Detail {
@@ -38,7 +40,9 @@ const initialState: DetailsState = {
 	returnURLOk: '',
 	returnURLFault: '',
 	showcase: '',
-	payMode: ''
+	payMode: '',
+	isChecked: false,
+	isClosed: false
 };
 
 const detailsSlice = createSlice({
@@ -53,12 +57,20 @@ const detailsSlice = createSlice({
 				...state,
 				...action.payload
 			}
+		},
+		setIsChecked(state, action: PayloadAction<any>) {
+			state.isChecked = action.payload
+		},
+		setIsClosed(state, action: PayloadAction<any>) {
+			state.isClosed = action.payload
 		}
 	}
 });
 
 export const {
 	setDetail,
-	setDetails
+	setDetails,
+	setIsChecked,
+	setIsClosed
 } = detailsSlice.actions;
 export default detailsSlice.reducer;

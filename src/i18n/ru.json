@@ -182,5 +182,7 @@
    "ITN": "ИНН",
    "Phone_static": "Телефон",
    "Buyer information": "Информация о покупателе",
-   "Full name": "Полное имя"
+   "Full name": "Полное имя",
+   "Payment by card": "Оплата картой",
+   "Payment with a promo code": "Оплата промокодом"
 }

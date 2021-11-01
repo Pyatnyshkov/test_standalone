@@ -4,55 +4,51 @@ import {CustomInput} from "./UI/CustomInput";
 import I18n from "i18n-js";
 import {useAppDispatch, useAppSelector} from "../helpers/redux-hooks";
 import CustomCheckbox from "./UI/CustomCheckbox";
-import {setIsChecked} from "../store/reducers/app";
-import {setDetails} from "../store/reducers/details";
+import {setDetails, setIsChecked} from "../store/reducers/details";
 
-interface III {
-    name: any,
-    value: any
-
-}
-export const Order = forwardRef((props, ref: any) => {
+const Order = forwardRef((props, ref: any) => {
 
     const dispatch = useAppDispatch()
     const details = useAppSelector(state => state.details)
-    const {isChecked, isLoading} = useAppSelector(state => state.app)
-    const {shops, currencies, cardTypes, acquires } = useAppSelector(state => state.apiData)
+    const { isLoading} = useAppSelector(state => state.app)
+    // const {shops, currencies, cardTypes, acquires } = useAppSelector(state => state.apiData)
 
-    const shopOptions = shops.map((shop) => ({
-        label: shop.name,
-        value: shop.id,
-    }));
-
-    const currencyOptions = currencies.map((curr) => ({
-        label: curr.code
-    }));
-
-    const langOptions = [
-        {
-            label: 'Русский',
-            value: 'ru',
-        },
-        {
-            label: 'Английский',
-            value: 'en',
-        }
-    ];
-
-    const cardTypeOptions = cardTypes.map((cardType) => ({
-        label: cardType.name,
-        value: cardType.id,
-    }));
-
-    const acquirerOptions = acquires.map((acquirer) => ({
-        label: acquirer.name,
-        value: acquirer.id,
-    }));
+    // const shopOptions = shops.map((shop) => ({
+    //     label: shop.name,
+    //     value: shop.id,
+    // }));
+    //
+    // const currencyOptions = currencies.map((curr) => ({
+    //     label: curr.code
+    // }));
+    //
+    // const langOptions = [
+    //     {
+    //         label: 'Русский',
+    //         value: 'ru',
+    //     },
+    //     {
+    //         label: 'Английский',
+    //         value: 'en',
+    //     }
+    // ];
+    //
+    // const cardTypeOptions = cardTypes.map((cardType) => ({
+    //     label: cardType.name,
+    //     value: cardType.id,
+    // }));
+    const changer = () => {
+        console.log('заглушка')
+    }
+    //
+    // const acquirerOptions = acquires.map((acquirer) => ({
+    //     label: acquirer.name,
+    //     value: acquirer.id,
+    // }));
 
     const handleChange = (name: any, value: any) => {
         dispatch(setDetails({name, value}))
     }
-
 
     if (isLoading) {
         return <div ref={ref}>Loading</div>;
@@ -63,7 +59,7 @@ export const Order = forwardRef((props, ref: any) => {
             label={I18n.t('Shop')}
             name={details.shop_id}
             onChange={handleChange}
-            options={shopOptions}
+            options={changer}
         />
         <CustomInput
             label={I18n.t('Order ID')}
@@ -83,7 +79,7 @@ export const Order = forwardRef((props, ref: any) => {
             label={I18n.t('Currency')}
             name={details.currency}
             onChange={handleChange}
-            options={currencyOptions}
+            options={changer}
         />
         <CustomInput
             label={I18n.t('Timeout')}
@@ -96,7 +92,7 @@ export const Order = forwardRef((props, ref: any) => {
             label={I18n.t('Language')}
             name={details.language}
             onChange={handleChange}
-            options={langOptions}
+            options={changer}
         />
         <CustomInput
             label={I18n.t('Comment')}
@@ -109,21 +105,20 @@ export const Order = forwardRef((props, ref: any) => {
             label={I18n.t('Card type')}
             name={details.cardType}
             onChange={handleChange}
-            options={cardTypeOptions}
+            options={changer}
         />
         <CustomSelect
             label={I18n.t('Acquirer')}
             name={details.acquirer}
             onChange={handleChange}
-            options={acquirerOptions}
+            options={changer}
         />
         <CustomCheckbox
             label={I18n.t('Reccuring')}
             name={details.reccurring}
-            type='checkbox'
             value={details.reccurring}
-            onChange={() => dispatch(setIsChecked(!isChecked))}/>
-        {isChecked &&
+            onChange={() => dispatch(setIsChecked(!details.isChecked))}/>
+        {details.isChecked &&
         <CustomInput
             label={I18n.t('Profile ID')}
             name={details.comment}
@@ -135,3 +130,5 @@ export const Order = forwardRef((props, ref: any) => {
     </div>
     )};
 });
+
+export default Order;

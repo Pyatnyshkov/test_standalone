@@ -181,5 +181,7 @@
    "ITN": "ITN",
    "Phone_static": "Phone",
    "Buyer information": "Buyer information",
-   "Full name": "Full name"
+   "Full name": "Full name",
+   "Payment by card": "Payment by card",
+   "Payment with a promo code": "Payment with a promo code"
 }

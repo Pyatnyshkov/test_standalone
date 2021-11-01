@@ -11,7 +11,6 @@ export interface AppState {
   user: string;
   language: string;
   isLoading: boolean;
-  isChecked: boolean;
   currentStep: string;
   showSend: boolean;
   notify: Notify;
@@ -27,7 +26,6 @@ const initialState: AppState = {
   user: "",
   language: "",
   isLoading: false,
-  isChecked: false,
   currentStep: "",
   showSend: false,
   notify: {} as Notify
@@ -61,9 +59,6 @@ const appSlice = createSlice({
     },
     setNotify(state, action: PayloadAction<Notify>) {
       state.notify = action.payload;
-    },
-    setIsChecked(state, action: PayloadAction<boolean>){
-      state.isChecked = action.payload
     }
   }
 });
@@ -75,7 +70,6 @@ export const {
   showSend,
   setNotify,
   changeLanguage,
-  setUser,
-  setIsChecked
+  setUser
 } = appSlice.actions;
 export default appSlice.reducer;

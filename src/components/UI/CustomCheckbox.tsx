@@ -5,7 +5,6 @@ interface ICustomCheckbox {
     setError?: any,
     label: string,
     name: string,
-    type: string,
     value: string | number,
     onChange: (name: string, value: string | number) => void,
 }
@@ -15,7 +14,6 @@ const CustomCheckbox: React.FC<ICustomCheckbox> =
          error,
          setError,
          label,
-         type,
          value,
          onChange,
          name
@@ -34,7 +32,7 @@ const CustomCheckbox: React.FC<ICustomCheckbox> =
                 <div className={errorClass}>
                     <input
                         className="modal-form__checkbox"
-                        type={type}
+                        type='checkbox'
                         name={name}
                         onChange={handleChange}
                         value={value}

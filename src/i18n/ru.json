@@ -180,5 +180,7 @@
    "Agent sign": "Признак агента",
    "Legal entity of the supplier": "Юридическое лицо поставщика",
    "ITN": "ИНН",
-   "Phone_fisc": "Телефон"
+   "Phone_static": "Телефон",
+   "Buyer information": "Информация о покупателе",
+   "Full name": "Полное имя"
 }

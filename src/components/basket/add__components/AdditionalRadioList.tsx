@@ -30,7 +30,7 @@ export const AdditionalRadioList: React.FC<IAdditionRadio> = ({orderState, setAd
                     <input type="radio" name="addition" value="Documents" onChange={changeRadioState} />
                     <span className="addition__span">{ I18n.t("Documents") }</span>
                 </label> : null
-            }            
+            }
             <label className="addition-label">
                 <input type="radio" name="addition" value="PaymentMethods" onChange={changeRadioState} />
                 <span className="addition__span">{ I18n.t("Payment methods") }</span>

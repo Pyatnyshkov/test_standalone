@@ -24,7 +24,8 @@
   margin: 3rem;
 }
 
-.content_elem {
+.content_elem,
+.content__elem {
   padding: 1rem;
   height: 600px;
   background-color: #ebebeb;
@@ -33,4 +34,9 @@
 
 .content_elem:last-child {
   margin-bottom: 500px;
+}
+
+.customer__title {
+  font-size: 14px;
+  line-height: 19px;
 }

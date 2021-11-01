@@ -8,8 +8,8 @@ import { Marking } from './add__components/Marking';
 import { Fiscalization } from './add__components/Fiscalization';
 import { Documents } from './add__components/Documents';
 import { PaymentMethods } from './add__components/PaymentMethods';
-import { SubmitButton } from './add__components/SubmitButton';
-import { CloseButton } from './add__components/CloseButton';
+import { SubmitButton } from '../UI/SubmitButton';
+import { CloseButton } from '../UI/CloseButton';
 import { ModalMainInputsList } from './add__components/ModalMainInputsList';
 
 interface IOrderModal {

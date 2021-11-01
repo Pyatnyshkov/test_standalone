@@ -1,20 +1,20 @@
 import React from 'react';
 import Select from 'react-select';
+import { apiElem } from '../../store/reducers/apiData';
+
 
 type ErrorClassType = string | undefined;
 interface ICustomSelect {
-    error?: boolean, 
-    setError?: any, 
-    name: string, 
-    label: string, 
-    options: any,
-    defaultValue?: any,
+    error?: string,
+    setError?: any,
+    name: string,
+    label: string,
+    options: apiElem[],
     onChange: (name: string, value: string | number) => void,
-    value: string | number,
+    value: apiElem,
 };
 
 export const CustomSelect: React.FC<ICustomSelect> = ({error, setError, name, label, options, onChange, value}) => {
-    const selectState = value ? { 'name': value, 'label': value } : { 'name': '', 'label': 'Choose...' };
     const errorClass: ErrorClassType = error ? 'error__select' : undefined;
     const saveSelectName = (value: any, key: any) => {
         //! обработку закоментировал, потому что не определились пока
@@ -38,7 +38,7 @@ export const CustomSelect: React.FC<ICustomSelect> = ({error, setError, name, la
                     name={name}
                     options={options} 
                     onChange={saveSelectName}
-                    value={selectState}
+                    value={value}
                 />
             </div>
             {

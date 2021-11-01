@@ -14,7 +14,8 @@ interface apiShopElem {
 	name: string
 	code: string
 }
-interface apiElem {
+
+export interface apiElem {
 	label: string,
 	value: string | number
 }

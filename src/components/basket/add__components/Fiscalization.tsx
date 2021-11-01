@@ -5,6 +5,8 @@ import I18n from "i18n-js";
 import { CustomInput } from '../../UI/CustomInput';
 import { CustomSelect } from '../../UI/CustomSelectNew';
 
+import { setSelectValue } from '../../../helpers/setSelectValue';
+
 interface IFiscalization {
     orderState: any,
     setOrderState: React.Dispatch<React.SetStateAction<any>>,
@@ -13,7 +15,7 @@ interface IFiscalization {
 export const Fiscalization: React.FC<IFiscalization> = ({orderState, setOrderState}) => {
     const supplierInfo = orderState.supplier_info;
     const setData = (name: string, value: string | number) => {
-        let key: any;
+        let key: string;
         let newData;
         let newValue;
         switch(name) {
@@ -61,39 +63,39 @@ export const Fiscalization: React.FC<IFiscalization> = ({orderState, setOrderSta
                     label={I18n.t('Tax system')} 
                     options={taxOptions} 
                     onChange={setData} 
-                    value={orderState.taxation_system || null} 
+                    value={ setSelectValue(orderState.taxation_system, orderState.taxation_system) } 
                 />
                 <CustomSelect 
                     name={'percentage'} 
                     label={I18n.t('Tax rate')} 
                     options={taxRateOptions} 
                     onChange={setData} 
-                    value={orderState.taxes[0].percentage || null} 
+                    value={ setSelectValue(orderState.taxes[0].percentage, orderState.taxes[0].percentage) } 
                 /> 
                 <CustomSelect 
                     name={'taxation_item_type'} 
                     label={I18n.t('Calculation subject attribute')} 
                     options={taxationItemTypeOption} 
                     onChange={setData} 
-                    value={orderState.taxation_item_type || null} 
+                    value={ setSelectValue(orderState.taxation_item_type, orderState.taxation_item_type) } 
                 />  
                 <CustomSelect 
                     name={'taxation_item_settlement_method'} 
                     label={I18n.t('Calculation method attribute')} 
                     options={taxationItemSettlementMethodOptions} 
                     onChange={setData} 
-                    value={orderState.taxation_item_settlement_method || null}
+                    value={ setSelectValue(orderState.taxation_item_settlement_method, orderState.taxation_item_settlement_method) }
                 /> 
                 <CustomSelect 
                     name={'type'} 
                     label={I18n.t('Agent sign')} 
                     options={agentInfoTypeOptions}  
                     onChange={setData} 
-                    value={orderState.agent_info.type || null}
+                    value={ setSelectValue(orderState.agent_info.type, orderState.agent_info.type) }
                 /> 
                 <CustomInput name={'name'} value={supplierInfo.name} label={I18n.t('Legal entity of the supplier')} type={'text'} onChange={setData} />
                 <CustomInput name={'inn'} value={supplierInfo.inn} label={I18n.t('ITN')} type={'text'} onChange={setData} />
-                <CustomInput name={'phone'} value={supplierInfo.phone} label={I18n.t('Phone_fisc')} type={'text'} onChange={setData} />
+                <CustomInput name={'phone'} value={supplierInfo.phone} label={I18n.t('Phone_static')} type={'text'} onChange={setData} />
             </ul>
         </div>
     )

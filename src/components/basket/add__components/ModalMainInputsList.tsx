@@ -5,19 +5,21 @@ import I18n from "i18n-js";
 import { CustomInput } from '../../UI/CustomInput';
 import { CustomSelect } from '../../UI/CustomSelectNew';
 
+import { setSelectValue } from '../../../helpers/setSelectValue';
+
 interface IModalMainInputsList {
     orderState: {
         sum?: number | string,
         ref: string,
         name: string,
         number: string,
-        typename: any,
+        typename: string,
         quantity: number | null,
         descr: string,
-        host: any,
+        host: string,
         accode: string,
-        measure: any,
-        clearing: any,
+        measure: string,
+        clearing: string,
     },
     setOrderState: React.Dispatch<React.SetStateAction<any>>,
 }
@@ -41,7 +43,7 @@ export const ModalMainInputsList: React.FC<IModalMainInputsList> = ({orderState,
                 label={I18n.t('Measure')} 
                 options={measureOptions} 
                 onChange={setData} 
-                value={orderState.measure || null}
+                value={ setSelectValue(orderState.measure, orderState.measure) }
             /> 
             { 
                 orderState.typename === 'goods' ? 
@@ -50,7 +52,7 @@ export const ModalMainInputsList: React.FC<IModalMainInputsList> = ({orderState,
                             label={I18n.t('Category')} 
                             options={typenameOptions} 
                             onChange={setData} 
-                            value={orderState.typename || null}
+                            value={ setSelectValue(orderState.typename, orderState.typename) }
                         /> 
             }
             <CustomSelect
@@ -58,14 +60,14 @@ export const ModalMainInputsList: React.FC<IModalMainInputsList> = ({orderState,
                 label={I18n.t('Host')} 
                 options={hostOptions} 
                 onChange={setData} 
-                value={orderState.host || null}
+                value={ setSelectValue(orderState.host, orderState.host) }
             /> 
             <CustomSelect 
                 name={'clearing'} 
                 label={I18n.t('Сlearing')} 
                 options={clearingOptions} 
                 onChange={setData} 
-                value={orderState.clearing || null}
+                value={ setSelectValue(orderState.clearing, orderState.clearing) }
             /> 
             <CustomInput name={'quantity'} value={orderState.quantity || ''} label={I18n.t('Quantity')} type={'number'} onChange={setData} />
             <CustomInput name={'descr'} value={orderState.descr} label={I18n.t('Description')} type={'textarea'} onChange={setData} />

@@ -1,7 +1,5 @@
 import React, {useState, SyntheticEvent } from 'react';
 
-// import { addBasketItem, editBasketItemKey } from '../../store/actions/basket';
-
 import { AdditionalRadioList } from './add__components/AdditionalRadioList';
 import { ModalHeader } from './add__components/ModalHeader';
 import { Marking } from './add__components/Marking';

@@ -1,5 +1,4 @@
 import React, { SyntheticEvent, useEffect, useState } from 'react';
-
 import I18n from "i18n-js";
 
 interface IDocuments {
@@ -16,7 +15,7 @@ export const Documents: React.FC<IDocuments> = ({orderState, setOrderState}) => 
 
     useEffect(() => {
         setArrayLength(orderStateArrayLength)
-    }, [orderStateArrayLength])
+    }, [orderStateArrayLength]);
 
     const keysArray = Array.from(Array(arrayLength).keys());
 

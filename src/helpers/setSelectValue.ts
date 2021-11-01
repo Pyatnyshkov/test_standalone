@@ -1,4 +1,3 @@
-
 export const setSelectValue = (label: string , value: string | number) =>  {
     return value !== '' ? 
         Object.assign({}, {label: label}, {value: value}) : 

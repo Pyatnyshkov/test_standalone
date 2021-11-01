@@ -5,7 +5,7 @@ import Header from "./Header";
 import Notification from "./UI/Notification";
 import { Order } from "./Order";
 import { Basket } from "./basket/Basket";
-import { Customer } from "./Customer";
+import { Customer } from "./customer/Customer";
 import { Send } from "./Send";
 
 import { useAppSelector, useAppDispatch } from "../helpers/redux-hooks";

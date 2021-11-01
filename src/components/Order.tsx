@@ -12,7 +12,7 @@ interface III {
     value: any
 
 }
-const OrderDetails = forwardRef((props, ref: any) => {
+export const Order = forwardRef((props, ref: any) => {
 
     const dispatch = useAppDispatch()
     const details = useAppSelector(state => state.details)
@@ -135,5 +135,3 @@ const OrderDetails = forwardRef((props, ref: any) => {
     </div>
     )};
 });
-
-export default OrderDetails;

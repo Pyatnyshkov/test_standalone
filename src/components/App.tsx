@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, FC } from "react";
+import React, {useRef, useEffect, FC, useMemo, useCallback} from "react";
 
 import Menu from "./Menu";
 import Header from "./Header";
@@ -13,7 +13,6 @@ import { setLanguage, setCurrentStep, showSend, setUser } from "../store/reducer
 import { fetchShops } from "../store/reducers/ActionCreators";
 
 import "../media/css/main.css";
-import OrderDetails from "./OrderDetails";
 
 interface Props {
   /** Interface language */
@@ -33,11 +32,11 @@ const App: FC<Props> = (props: Props) => {
   const customerRef = useRef();
   const sendRef = useRef();
 
-  const steps: any = {
+  const steps: any = useMemo(() => ({
     order: orderRef,
     basket: basketRef,
     customer: customerRef
-  };
+  }), []);
 
   useEffect(() => {
     if (props.show_send) {
@@ -48,7 +47,12 @@ const App: FC<Props> = (props: Props) => {
     let initialStep = window.location.pathname.slice(1);
     dispatch(setCurrentStep(steps[initialStep] ? initialStep : 'order'));
     dispatch(setLanguage(props.language));
-  }, []);
+  }, [props, steps, dispatch]);
+
+  const scrollToStep = useCallback((step: string) => {
+    const position = steps[step].current.getBoundingClientRect().top + window.scrollY - 110;
+    window.scrollTo({ top: position });
+  }, [steps]);
 
   useEffect(() => {
     currentStep && scrollToStep(currentStep);
@@ -78,11 +82,11 @@ const App: FC<Props> = (props: Props) => {
       window.removeEventListener("scroll", getLocationStep);
       window.removeEventListener("scroll", getPosition);
     };
-  }, [currentStep]);
+  }, [currentStep, dispatch, scrollToStep, steps]);
 
   useEffect(() => {
     language && dispatch(fetchShops());
-  }, [language]);
+  }, [language, dispatch]);
 
   // обработка нажатия навигации
   const handleStep = (step: string) => {
@@ -90,30 +94,22 @@ const App: FC<Props> = (props: Props) => {
     scrollToStep(step);
   };
 
-  const scrollToStep = (step: string) => {
-    const position =
-      steps[step].current.getBoundingClientRect().top + window.pageYOffset - 110;
-    window.scrollTo({ top: position });
-  };
-
   return (
-    <div className="register_page">
-      <Menu handleStep={handleStep} />
-      <div className="main_page">
-        <Header />
-        <div className="content_container">
-          <div className="content">
-            <div>{language}</div>
-            {/*<Order ref={orderRef} />*/}
-            <OrderDetails ref={orderRef}/>
-            <Basket ref={basketRef} />
-            <Customer ref={customerRef} />
-            {props.show_send && <Send ref={sendRef} />}
+      <div className="register_page">
+        <Menu handleStep={handleStep} />
+        <div className="main_page">
+          <Header />
+          <div className="content_container">
+            <div className="content">
+              <Order ref={orderRef} />
+              <Basket ref={basketRef} />
+              <Customer ref={customerRef} />
+              {props.show_send && <Send ref={sendRef} />}
+            </div>
           </div>
         </div>
+        <Notification />
       </div>
-      <Notification />
-    </div>
   );
 };
 

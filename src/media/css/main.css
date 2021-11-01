@@ -4,6 +4,7 @@
 @import './menu.css';
 @import './modal.css';
 @import './notification.css';
+@import './basket.css';
 
 .no-scroll {
   height: 100%;

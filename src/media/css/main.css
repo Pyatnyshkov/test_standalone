@@ -41,3 +41,92 @@
   font-size: 14px;
   line-height: 19px;
 }
+
+.list__item {
+  margin-bottom: 20px;
+  position: relative;
+  list-style: none;
+}
+
+.addition-buttons {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.form-buttons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-item__submit {
+  width: 60%;
+}
+
+.close-modal__button {
+  width: 30%;
+}
+
+.required-label {
+  display: block;
+  position: absolute;
+  color: tomato;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.list__item .error__input,
+.list__item .error__select {
+  position: relative;
+}
+
+.list__item .error__input::before {
+  content: '';
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  border: 1px solid tomato;
+  border-radius: 5px;
+}
+
+.list__item .error__select > div > div  {
+  border-color: tomato;
+}
+
+.list__label {
+  position: relative;
+  display: block;
+}
+
+.list__span {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.list__input {
+  width: 100%;
+  border: 1px solid #ced4da;
+  color: #495057;
+  border-radius: .25rem;
+  display: block;
+  height: 36px;
+  font-size: 14px;
+  line-height: 36px;
+  padding: 8px 10px;
+}
+
+.list__checkbox {
+  width: 3%;
+  border: 1px solid #ced4da;
+  color: #495057;
+  border-radius: .25rem;
+  display: block;
+  height: 36px;
+  padding: 8px 7px;
+  font-size: 14px;
+  line-height: 36px;
+}

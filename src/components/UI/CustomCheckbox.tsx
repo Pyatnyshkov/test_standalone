@@ -21,18 +21,18 @@ export const CustomCheckbox: React.FC<ICustomCheckbox> = ({
 
   return (
     <li className="list__item">
-      <label className="modal-form__label">
-        <span className="modal-form__span">{label}</span>
+      <label className="list__label">
+        <span className="list__span">{label}</span>
         <div className={errorClass}>
           <input
-            className="modal-form__checkbox"
+            className="list__checkbox"
             type="checkbox"
             name={name}
             onChange={onChange}
             checked={value}
           />
         </div>
-        {error ? <div className={`required-label`}>{error}</div> : null}
+        {error ? <div className={`required__label`}>{error}</div> : null}
       </label>
     </li>
   );

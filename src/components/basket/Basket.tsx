@@ -9,7 +9,6 @@ import { fadeIn, fadeOut } from '../../helpers/modal-fade'
 import I18n from "i18n-js";
 
 import '../../media/css/basket.css';
-import '../../media/css/modal.css';
 
 export const Basket = forwardRef((props, ref: any) => {
 	const modalRef = useRef<HTMLDivElement>(null);
@@ -35,7 +34,7 @@ export const Basket = forwardRef((props, ref: any) => {
 			{ 
 				orderItemsLenght ? 
 					<OrderList list={order.items} setActive={setModalActive} /> : 
-					<span className="basket__title">{ I18n.t("Cart is empty") }</span>
+					<span className="title basket__title">{ I18n.t("Cart is empty") }</span>
 			}
 
 			<div ref={modalRef} className="modal" onClick={() => setModalActive(false)} >

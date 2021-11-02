@@ -11,7 +11,6 @@
   overflow-y: hidden;
 }
 
-
 .main_page {
   width: calc(100% - 230px);
   margin-left: 230px;
@@ -37,9 +36,11 @@
   margin-bottom: 500px;
 }
 
-.customer__title {
-  font-size: 14px;
-  line-height: 19px;
+.title {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 20px;
+  line-height: 24px;
 }
 
 .list__item {
@@ -104,7 +105,9 @@
 
 .list__span {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
+  font-size: 14px;
+  line-height: 19px;
 }
 
 .list__input {
@@ -117,6 +120,16 @@
   font-size: 14px;
   line-height: 36px;
   padding: 8px 10px;
+}
+
+.list__input[type="number"]::-webkit-outer-spin-button,
+.list__input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.list__input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 .list__checkbox {

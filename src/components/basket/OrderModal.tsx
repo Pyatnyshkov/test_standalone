@@ -10,6 +10,8 @@ import { SubmitButton } from '../UI/SubmitButton';
 import { CloseButton } from '../UI/CloseButton';
 import { ModalMainInputsList } from './add__components/ModalMainInputsList';
 
+import '../../media/css/modal.css';
+
 interface IOrderModal {
     setActive: React.Dispatch<React.SetStateAction<boolean>>,
 }

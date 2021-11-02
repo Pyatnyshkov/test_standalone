@@ -20,7 +20,7 @@ export const Customer = forwardRef((props, ref: any) => {
 
     return (
         <div className="customer content__elem" ref={ref}>
-            <span className="customer__title">{ I18n.t("Buyer information") }</span>
+            <span className="title customer__title">{ I18n.t("Buyer information") }</span>
             <ul className="customer-list">
                 <CustomInput name={'id'} value={customerState.id} label={I18n.t('ID')} type={'text'} onChange={setData} />
                 <CustomInput name={'name'} value={customerState.name} label={I18n.t('Full name')} type={'text'} onChange={setData} />

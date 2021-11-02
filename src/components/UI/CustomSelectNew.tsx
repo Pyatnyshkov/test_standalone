@@ -32,7 +32,7 @@ export const CustomSelect: React.FC<ICustomSelect> = ({error, setError, name, la
 
     return (
         <li className="list__item">
-            <span className="modal-form__span">{label}</span>
+            <span className="list__span">{label}</span>
             <div className={errorClass}>
                 <Select
                     name={name}
@@ -42,7 +42,7 @@ export const CustomSelect: React.FC<ICustomSelect> = ({error, setError, name, la
                 />
             </div>
             {
-                error ? <div className={`required-label`}>{error}</div> : null
+                error ? <div className={`required__label`}>{error}</div> : null
             }
         </li>
     )

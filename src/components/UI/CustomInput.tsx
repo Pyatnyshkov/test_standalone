@@ -30,11 +30,11 @@ export const CustomInput: React.FC<ICustomInput> = ({error, setError, label, nam
 
     return (
         <li className="list__item">
-            <label className="modal-form__label">
-                <span className="modal-form__span">{label}</span>
+            <label className="list__label">
+                <span className="list__span">{label}</span>
                 <div className={errorClass}>
                     <input
-                        className="modal-form__input"
+                        className="list__input"
                         type={type}
                         name={name} 
                         onChange={handleChange} 
@@ -42,7 +42,7 @@ export const CustomInput: React.FC<ICustomInput> = ({error, setError, label, nam
                     />
                 </div>
                 {
-                    error ? <div className={`required-label`}>{error}</div> : null
+                    error ? <div className={`required__label`}>{error}</div> : null
                 }
             </label>
         </li>

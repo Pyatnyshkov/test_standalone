@@ -105,6 +105,20 @@ export const Order = forwardRef((props, ref: any) => {
           onChange={handleChange}
           options={apiData.acquires}
         />
+          <CustomInput
+              label={I18n.t("Successful payment URL")}
+              name="returnURLOk"
+              value={details.returnURLOk}
+              onChange={handleChange}
+              type="text"
+          />
+          <CustomInput
+              label={I18n.t("Unsuccessful payment URL")}
+              name="returnURLFault"
+              value={details.returnURLFault}
+              onChange={handleChange}
+              type="text"
+          />
         <CustomCheckbox
           label={I18n.t("Reccuring")}
           name="reccurring"
@@ -120,6 +134,13 @@ export const Order = forwardRef((props, ref: any) => {
             type="text"
           />
         )}
+          <CustomInput
+              label={I18n.t("Showcase")}
+              name="ShowCase"
+              value={details.showcase}
+              onChange={handleChange}
+              type="text"
+          />
       </div>
     );
   }

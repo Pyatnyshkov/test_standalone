@@ -6,7 +6,7 @@ import Notification from "./UI/Notification";
 import { Order } from "./Order";
 import { Basket } from "./basket/Basket";
 import { Customer } from "./customer/Customer";
-import { Send } from "./Send";
+import { Send } from "./send/Send";
 
 import { useAppSelector, useAppDispatch } from "../helpers/redux-hooks";
 import { setLanguage, setCurrentStep, showSend, setUser } from "../store/reducers/app";

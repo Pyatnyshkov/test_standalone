@@ -184,5 +184,8 @@
    "Buyer information": "Информация о покупателе",
    "Full name": "Полное имя",
    "Payment by card": "Оплата картой",
-   "Payment with a promo code": "Оплата промокодом"
+   "Payment with a promo code": "Оплата промокодом",
+   "Successful payment URL": "URL успешной оплаты",
+   "Unsuccessful payment URL": "URL неудачной оплаты",
+   "Showcase": "Шоукейс"
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
+import {apiElem} from "../../models/api";
 
 type ErrorClassType = string | undefined;
 interface ICustomSelect {
@@ -8,11 +9,11 @@ interface ICustomSelect {
     name: string, 
     label: string, 
     options: any,
-    defaultValue?: any,
-    onChange: (name: string, value: string | number) => void,
+    value: apiElem,
+    onChange: (label: string, value: string | number) => void,
 };
 
-export const CustomSelect: React.FC<ICustomSelect> = ({error, setError, name, label, options, onChange}) => {
+export const CustomSelect: React.FC<ICustomSelect> = ({error, setError, name, label, options, value, onChange}) => {
     const errorClass: ErrorClassType = error ? 'error__select' : undefined;
     const saveSelectName = (value: any, key: any) => {
         //! обработку закоментировал, потому что не определились пока
@@ -36,6 +37,7 @@ export const CustomSelect: React.FC<ICustomSelect> = ({error, setError, name, la
                     name={name}
                     options={options} 
                     onChange={saveSelectName}
+                    value={value}
                 />
             </div>
             {

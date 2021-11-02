@@ -1,6 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
-import { apiElem } from '../../store/reducers/apiData';
+import { apiElem } from '../../models/api';
 
 
 type ErrorClassType = string | undefined;

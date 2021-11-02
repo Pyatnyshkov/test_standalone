@@ -4,28 +4,15 @@ import I18n from "i18n-js";
 import ru from "../../i18n/ru.json";
 import en from "../../i18n/en.json";
 
+import { AppState, Notify } from "../../models/app";
+
 I18n.translations["en"] = en;
 I18n.translations["ru"] = ru;
-
-export interface AppState {
-  user: string;
-  language: string;
-  isLoading: boolean;
-  currentStep: string;
-  showSend: boolean;
-  notify: Notify;
-}
-
-export interface Notify {
-  type: string;
-  title: string;
-  text: string;
-}
 
 const initialState: AppState = {
   user: "",
   language: "",
-  isLoading: false,
+  isLoading: true,
   currentStep: "",
   showSend: false,
   notify: {} as Notify

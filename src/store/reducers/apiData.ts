@@ -1,27 +1,18 @@
 import { createSlice, PayloadAction} from "@reduxjs/toolkit";
-
-export interface apiState {
-	shops: apiElem[],
-	currencies: apiElem[],
-	acquires: apiElem[],
-	cardTypes: apiElem[],
-	measurements: apiElem[],
-	categories: apiElem[]
-}
-// добавил типы данных для id и name, без них выдавал ошибку, так как мы не указали тип данных для id | name
-interface apiShopElem {
-	id: string,
-	name: string
-	code: string
-}
-
-export interface apiElem {
-	label: string,
-	value: string | number
-}
+import {apiElem, apiState} from "../../models/api";
 
 const measures = ['шт', 'кг', 'л', 'м2', 'м3', 'шт', 'дм3', 'г', 'мл', 'п.м.', 'мг'];
 const categories = ['услуги'];
+const langOptions = [
+	{
+		label: 'Русский',
+		value: 'ru',
+	},
+	{
+		label: 'Английский',
+		value: 'en',
+	}
+];
 
 const getOptions = (source:string[]) => source.map(elem => ({
 	label: elem,
@@ -35,7 +26,12 @@ const initialState: apiState = {
 	cardTypes: [],
 	measurements: getOptions(measures),
 	categories: getOptions(categories),
-
+	taxOptions: [],
+	taxRates: [],
+	taxationSystems: [],
+	taxationSettlements: [],
+	agentTypes: [],
+	languages: langOptions
 };
 
 const apiSlice = createSlice({
@@ -54,6 +50,21 @@ const apiSlice = createSlice({
 		setCardTypes(state, action: PayloadAction<apiElem[]>) {
 			state.cardTypes = action.payload
 		},
+		setTaxOptions(state, action: PayloadAction<apiElem[]>) {
+			state.taxOptions = action.payload
+		},
+		setTaxRates(state, action: PayloadAction<apiElem[]>) {
+			state.taxRates = action.payload
+		},
+		setTaxationSystems(state, action: PayloadAction<apiElem[]>) {
+			state.taxationSystems = action.payload
+		},
+		setTaxationSettlements(state, action: PayloadAction<apiElem[]>) {
+			state.taxationSettlements = action.payload
+		},
+		setAgentTypes(state, action: PayloadAction<apiElem[]>) {
+			state.agentTypes = action.payload
+		}
 	},
 });
 
@@ -61,6 +72,11 @@ export const {
 	setShops,
 	setCurrencies,
 	setAcquires,
-	setCardTypes
+	setCardTypes,
+	setTaxOptions,
+	setTaxRates,
+	setTaxationSystems,
+	setTaxationSettlements,
+	setAgentTypes
 } = apiSlice.actions;
 export default apiSlice.reducer;

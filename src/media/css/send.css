@@ -1,3 +1,7 @@
+.send {
+    position: relative;
+}
+
 .send__input {
     display: none;
 }
@@ -54,4 +58,10 @@
     line-height: 19px;
     text-transform: uppercase;
     padding-left: 55px;
+}
+
+.send-button-wrapp {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
 }

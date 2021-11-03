@@ -1,4 +1,4 @@
-import React, {useState, SyntheticEvent } from 'react';
+import React, {useState, SyntheticEvent, useEffect } from 'react';
 
 import { AdditionalRadioList } from './add__components/AdditionalRadioList';
 import { ModalHeader } from './add__components/ModalHeader';
@@ -19,6 +19,7 @@ interface IOrderModal {
 }
 
 export const OrderModal: React.FC<IOrderModal> = ({setActive}) => {
+    //* общий стейт модалки 
     const [orderState, setOrderState] = useState({
         typename: 'goods',
         host: '',
@@ -74,9 +75,11 @@ export const OrderModal: React.FC<IOrderModal> = ({setActive}) => {
     const [additionRadioState, setAdditionRadioState] = useState('');
     //* стейт ошибок в модальном окне
     const [modalErrors, setModalError] = useState({});
-    // const keyToEdit = useSelector((state: RootState) => state.basket.editItemKey);
-    // const keyToAdd = 'order__item__' + Object.keys(useSelector((state: RootState) => state.basket.items)).length; //* генерируем ключ для нового айтема
-    // const editItem = useSelector((state: RootState) => state.basket.items[keyToEdit]); //* достаем айтем для редактирования
+
+    useEffect(() => {
+        //* получение из редакса
+        console.log('>>orderState in useEffect', orderState)
+    }, [orderState])
 
     const submitForm = (event: SyntheticEvent) => {
         event.preventDefault();
@@ -102,7 +105,7 @@ export const OrderModal: React.FC<IOrderModal> = ({setActive}) => {
             <div className="scrolling-wrapp">
                 <ModalMainInputsList errors={modalErrors} orderState={orderState} setOrderState={setOrderState} />
                 <AdditionalRadioList orderState={orderState} setAdditionRadioState={setAdditionRadioState}/>
-
+                
                 {
                     additionRadioState === "Fiscalization" ? <Fiscalization orderState={orderState} setOrderState={setOrderState} /> : 
                     additionRadioState === "Marking" ? <Marking orderState={orderState} setOrderState={setOrderState} /> : 

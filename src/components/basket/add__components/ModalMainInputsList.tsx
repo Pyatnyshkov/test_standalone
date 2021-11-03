@@ -4,6 +4,7 @@ import I18n from "i18n-js";
 import { CustomInput } from '../../UI/CustomInput';
 import { CustomSelect } from '../../UI/CustomSelectNew';
 
+import { useAppSelector } from "../../../helpers/redux-hooks";
 import { setSelectValue } from '../../../helpers/setSelectValue';
 
 interface IModalMainInputsList {
@@ -27,6 +28,7 @@ interface IModalMainInputsList {
 }
 
 export const ModalMainInputsList: React.FC<IModalMainInputsList> = ({errors, orderState, setOrderState}) => {
+    const apiData = useAppSelector(state => state.apiData);
     const setData = (name: string, value: string | number | null) => {
         const newValue = {
             ...orderState,
@@ -43,7 +45,7 @@ export const ModalMainInputsList: React.FC<IModalMainInputsList> = ({errors, ord
             <CustomSelect 
                 name={'measure'} 
                 label={I18n.t('Measure')} 
-                options={measureOptions} 
+                options={apiData.measurements} 
                 onChange={setData} 
                 value={ setSelectValue(orderState.measure, orderState.measure) }
             /> 
@@ -82,12 +84,6 @@ export const ModalMainInputsList: React.FC<IModalMainInputsList> = ({errors, ord
 }
 
 //!тестовые данные для селектов
-const measureOptions = [
-    { value: 'centimeter', label: 'Сантиметр' },
-    { value: 'meter', label: 'Метр' },
-    { value: 'millimeter', label: 'Миллиметр' },
-]
-
 const typenameOptions = [
     {value: 'cat_1', label: 'Категория 1'},
     {value: 'cat_2', label: 'Категория 2'},

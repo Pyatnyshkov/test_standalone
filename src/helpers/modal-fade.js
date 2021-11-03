@@ -1,11 +1,11 @@
-const bodyClassList = document.querySelector('body').classList;
+// const bodyClassList = document.querySelector('body').classList;
 
 function fadeIn(element, duration) {
     if(element) {
         (function increment(value = 0) {
             element.style.opacity = String(value);
             if (element.style.opacity !== '1') {
-                bodyClassList.add('no-scroll')
+                // bodyClassList.add('no-scroll')
                 element.style.display = 'block';
                 setTimeout(() => {
                     increment(value + 0.1);
@@ -21,7 +21,7 @@ function fadeOut(element, duration) {
         (function decrement() {
             if((element.style.opacity -= 0.1) < 0) {
                 element.style.display = 'none' 
-                bodyClassList.remove('no-scroll') 
+                // bodyClassList.remove('no-scroll') 
             } else {
                 setTimeout(() => {
                     decrement();

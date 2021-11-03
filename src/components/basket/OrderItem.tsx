@@ -24,13 +24,11 @@ export const OrderItem: React.FC<IOrderItem> = ({id, value, setActive}) => {
     const deleteItem = (event: SyntheticEvent, key: string) => {
         console.log('>>deleteItem', event, key);
         event.preventDefault();
-        // dispatch(deleteBasketItem(key)); //удаляем элемент через изметный ключ
     }
 
     const editItem = (event: SyntheticEvent, key: string) => {
         console.log('>>editItem', event, key);
         event.preventDefault();
-        // dispatch(editBasketItemKey(key)); //записываем ключ для редактирования
         setActive(true);
     }
 

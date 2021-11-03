@@ -1,6 +1,5 @@
 import React, { forwardRef, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/index';
+import { useAppSelector } from "../../helpers/redux-hooks";
 
 import { OrderModal } from './OrderModal';
 import { OrderList } from './OrderList';
@@ -13,8 +12,8 @@ import '../../media/css/basket.css';
 export const Basket = forwardRef((props, ref: any) => {
 	const modalRef = useRef<HTMLDivElement>(null);
 	const [modalActive, setModalActive] = useState(false);
-	const order = useSelector((state: RootState) => state.basket); //* получаем состояние корзины
-	const orderItemsLenght = Object.keys(order.items).length; //* проверка количества ключей в объекте для отображения списка
+	const basket = useAppSelector(state => state.basket); //* получаем состояние корзины
+	const basketItemsLenght = Object.keys(basket.items).length; //* проверка количества ключей в объекте для отображения списка
 
 	modalActive ? 
 		fadeIn(modalRef.current, 200) : 
@@ -32,8 +31,8 @@ export const Basket = forwardRef((props, ref: any) => {
 			</div>
 
 			{ 
-				orderItemsLenght ? 
-					<OrderList list={order.items} setActive={setModalActive} /> : 
+				basketItemsLenght ? 
+					<OrderList list={basket.items} setActive={setModalActive} /> : 
 					<span className="title basket__title">{ I18n.t("Cart is empty") }</span>
 			}
 

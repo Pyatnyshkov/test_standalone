@@ -18,6 +18,8 @@ const initialState: DetailsState = {
   showcase: "",
   payMode: "",
   isReccurring: false,
+  cardPayment: false,
+  promoPayment: false
 };
 
 const detailsSlice = createSlice({
@@ -35,6 +37,13 @@ const detailsSlice = createSlice({
     },
     setIsRecurring(state, action: PayloadAction<boolean>) {
       state.isReccurring = action.payload;
+    },
+    // Временные стейты для методов оплаты
+    setCardPayment(state, action: PayloadAction<boolean>) {
+      state.cardPayment = action.payload;
+    },
+    setPromoPayment(state, action: PayloadAction<boolean>) {
+      state.promoPayment = action.payload;
     }
   }
 });
@@ -42,6 +51,8 @@ const detailsSlice = createSlice({
 export const {
   setDetail,
   setDetails,
-  setIsRecurring
+  setIsRecurring,
+  setCardPayment,
+  setPromoPayment
 } = detailsSlice.actions;
 export default detailsSlice.reducer;

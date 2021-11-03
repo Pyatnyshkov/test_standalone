@@ -8,6 +8,7 @@ import { setDetail, setIsRecurring } from "../store/reducers/details";
 import { apiElem } from "../models/api";
 
 import I18n from "i18n-js";
+import {formatData} from "../helpers/formatData";
 
 export const Order = forwardRef((props, ref: any) => {
   const dispatch = useAppDispatch();
@@ -141,6 +142,7 @@ export const Order = forwardRef((props, ref: any) => {
               onChange={handleChange}
               type="text"
           />
+
       </div>
     );
   }

@@ -7,6 +7,9 @@ import { CustomSelect } from '../../UI/CustomSelectNew';
 import { setSelectValue } from '../../../helpers/setSelectValue';
 
 interface IModalMainInputsList {
+    errors: {
+        [key: string]: string | undefined,
+    }
     orderState: {
         sum?: number | string,
         ref: string,
@@ -23,7 +26,7 @@ interface IModalMainInputsList {
     setOrderState: React.Dispatch<React.SetStateAction<any>>,
 }
 
-export const ModalMainInputsList: React.FC<IModalMainInputsList> = ({orderState, setOrderState}) => {
+export const ModalMainInputsList: React.FC<IModalMainInputsList> = ({errors, orderState, setOrderState}) => {
     const setData = (name: string, value: string | number | null) => {
         const newValue = {
             ...orderState,
@@ -35,8 +38,8 @@ export const ModalMainInputsList: React.FC<IModalMainInputsList> = ({orderState,
     return (
         <ul className="modal-input-list">
             <CustomInput name={'ref'} value={orderState.ref} label={I18n.t('ID')} type={'text'} onChange={setData} />
-            <CustomInput name={'name'} value={orderState.name} label={I18n.t('Title')} type={'text'} onChange={setData} />
-            <CustomInput name={'number'} value={orderState.number} label={I18n.t('Number')} type={'text'} onChange={setData} />
+            <CustomInput error={errors.name} name={'name'} value={orderState.name} label={I18n.t('Title')} type={'text'} onChange={setData} />
+            <CustomInput error={errors.number} name={'number'} value={orderState.number} label={I18n.t('Number')} type={'text'} onChange={setData} />
             <CustomSelect 
                 name={'measure'} 
                 label={I18n.t('Measure')} 

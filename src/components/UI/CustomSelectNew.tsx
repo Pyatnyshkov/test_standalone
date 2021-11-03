@@ -2,11 +2,9 @@ import React from 'react';
 import Select from 'react-select';
 import { apiElem } from '../../models/api';
 
-
 type ErrorClassType = string | undefined;
 interface ICustomSelect {
     error?: string,
-    setError?: any,
     name: string,
     label: string,
     options: apiElem[],
@@ -14,19 +12,9 @@ interface ICustomSelect {
     value: apiElem,
 };
 
-export const CustomSelect: React.FC<ICustomSelect> = ({error, setError, name, label, options, onChange, value}) => {
+export const CustomSelect: React.FC<ICustomSelect> = ({error, name, label, options, onChange, value}) => {
     const errorClass: ErrorClassType = error ? 'error__select' : undefined;
     const saveSelectName = (value: any, key: any) => {
-        //! обработку закоментировал, потому что не определились пока
-        //! в каком видео и где мы будем их обрабатывать
-        // if(error) {
-        //     setError((prevState: object) => (
-        //         {
-        //             ...prevState, 
-        //             [name]: false
-        //         }
-        //     ))
-        // }
         onChange(key.name, value.value);
     }
 
@@ -42,7 +30,7 @@ export const CustomSelect: React.FC<ICustomSelect> = ({error, setError, name, la
                 />
             </div>
             {
-                error ? <div className={`required__label`}>{error}</div> : null
+                error ? <div className="required__label">{error}</div> : null
             }
         </li>
     )

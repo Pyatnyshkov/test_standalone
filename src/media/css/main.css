@@ -143,3 +143,11 @@
   font-size: 14px;
   line-height: 36px;
 }
+
+.required__label {
+  width: 100%;
+  position: absolute;
+  font-size: 12px;
+  line-height: 14px;
+  color: tomato;
+}

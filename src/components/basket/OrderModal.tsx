@@ -10,6 +10,8 @@ import { SubmitButton } from '../UI/SubmitButton';
 import { CloseButton } from '../UI/CloseButton';
 import { ModalMainInputsList } from './add__components/ModalMainInputsList';
 
+import Validation from '../../helpers/validation';
+
 import '../../media/css/modal.css';
 
 interface IOrderModal {
@@ -70,34 +72,35 @@ export const OrderModal: React.FC<IOrderModal> = ({setActive}) => {
     const [activeRadio, setActiveRadio] = useState('goods');
     //* стейт дополнительных вкладок фискализация/маркировка/документы/способы оплаты
     const [additionRadioState, setAdditionRadioState] = useState('');
+    //* стейт ошибок в модальном окне
+    const [modalErrors, setModalError] = useState({});
     // const keyToEdit = useSelector((state: RootState) => state.basket.editItemKey);
     // const keyToAdd = 'order__item__' + Object.keys(useSelector((state: RootState) => state.basket.items)).length; //* генерируем ключ для нового айтема
     // const editItem = useSelector((state: RootState) => state.basket.items[keyToEdit]); //* достаем айтем для редактирования
 
-    console.log('>> orderState', orderState);
-
     const submitForm = (event: SyntheticEvent) => {
         event.preventDefault();
-        console.log('>>submitForm', orderState)
-        // const validateFormValue = validateForm();
+        //* определяем объект и его ключи для валидации
+        const validateObject: any = {}; 
+        validateObject.name = orderState.name;
+        validateObject.number = orderState.number;
+
+        //* получаем статус валидации и объект ошибок
+        const { isValid, errors } = Validation(validateObject);
+        setModalError(errors);
+
         //? проверка валидацией
         //? далее проверяется то, будет ли добавление нового или редактирование относительно ключа
-        // if(validateFormValue) {
-            // if(keyToEdit) {
-                // dispatch(addBasketItem(orderState, keyToEdit));
-            // } else {
-                // dispatch(addBasketItem(orderState, keyToAdd));
-                // setOrderState(defaultObject);
-                // setActiveRadio('goods');
-            // }
-        // }
+        if (isValid) {
+            //* диспатч в редакс
+        }
     }
 
     return (
         <form className="order-form basket-modal" onClick={(e) => e.stopPropagation()} onSubmit={(event) => submitForm(event)}>
             <ModalHeader activeRadio={activeRadio} setActiveRadio={setActiveRadio} orderState={orderState} setOrderState={setOrderState} />
             <div className="scrolling-wrapp">
-                <ModalMainInputsList orderState={orderState} setOrderState={setOrderState} />
+                <ModalMainInputsList errors={modalErrors} orderState={orderState} setOrderState={setOrderState} />
                 <AdditionalRadioList orderState={orderState} setAdditionRadioState={setAdditionRadioState}/>
 
                 {

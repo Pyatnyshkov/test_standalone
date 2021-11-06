@@ -31,7 +31,15 @@ export interface apiState extends IObjectKeys{
     taxationSystems: apiElem[],
     taxationSettlements: apiElem[],
     agentTypes: apiElem[],
-    languages: apiElem[]
+    languages: apiElem[],
+    types: apiElem[],
+    hosts: apiElem[],
+    clearing: apiElem[],
+    taxation_systems: apiElem[],
+    tax_rates: apiElem[],
+    taxation_types: apiElem[],
+    taxation_methods: apiElem[],
+    agent_types: apiElem[]
 }
 
 export interface apiElem {

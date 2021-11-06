@@ -3,12 +3,14 @@ import appReducer from './reducers/app';
 import detailsReducer from './reducers/details';
 import basketReducer from './reducers/basket';
 import apiReducer from './reducers/apiData';
+import customerReducer from './reducers/customer';
 
 const reducer = combineReducers({
 	app: appReducer,
 	details: detailsReducer,
 	basket: basketReducer,
-	apiData: apiReducer
+	apiData: apiReducer,
+	customer: customerReducer
 });
 
 export const store = configureStore({

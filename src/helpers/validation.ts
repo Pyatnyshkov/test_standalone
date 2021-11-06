@@ -31,7 +31,7 @@ const validations: IValidation = {
     },
 }
 
-function Validation (data: IData) {
+function validate (data: IData) {
     const errors: IError = {};
     let isValid = true;
 
@@ -46,4 +46,4 @@ function Validation (data: IData) {
     return { isValid, errors }
 }
 
-export default Validation;
+export default validate;

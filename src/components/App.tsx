@@ -3,14 +3,14 @@ import React, {useRef, useEffect, FC, useMemo, useCallback} from "react";
 import Menu from "./Menu";
 import Header from "./Header";
 import Notification from "./UI/Notification";
-import { Order } from "./Order";
-import { Basket } from "./basket/Basket";
-import { Customer } from "./customer/Customer";
-import { Send } from "./send/Send";
+import Order from "./Order";
+import Basket from "./basket/Basket";
+import Customer from "./Customer";
+import Send from "./Send";
 
 import { useAppSelector, useAppDispatch } from "../helpers/redux-hooks";
 import { setLanguage, setCurrentStep, showSend, setUser } from "../store/reducers/app";
-import { fetchShops } from "../store/reducers/ActionCreators";
+import { fetchShops } from "../store/actionCreators/apiActions";
 
 import "../media/css/main.css";
 

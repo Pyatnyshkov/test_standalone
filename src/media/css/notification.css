@@ -55,13 +55,13 @@
 
 .notification_ok,
 .notification_error,
-.notification_fail {
+.notification_warn {
     padding-left: 52px;
 }
 
 .notification_ok .notification__icon,
 .notification_error .notification__icon,
-.notification_fail .notification__icon {
+.notification_warn .notification__icon {
     display: block;
 }
 
@@ -82,4 +82,8 @@
 
 .icon_error {
     background-image: url("../img/icons/icon_error.svg");
+}
+
+.icon_warn {
+    background-image: url("../img/icons/icon_warn.svg");
 }

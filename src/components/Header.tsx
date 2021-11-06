@@ -1,13 +1,13 @@
 import React from "react";
 import I18n from "i18n-js";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector} from "../helpers/redux-hooks";
 import { changeLanguage } from "../store/reducers/app";
 
-export default function Header() {
-  const dispatch = useDispatch();
-  const { currentStep, language, user } = useSelector(state => state.app);
-  const steps = {
+const Header = () => {
+  const dispatch = useAppDispatch();
+  const { currentStep, language, user } = useAppSelector(state => state.app);
+  const steps: {[key: string]: string} = {
     order: "Order",
     basket: "Basket",
     customer: "Customer",
@@ -37,4 +37,6 @@ export default function Header() {
       </div>
     </div>
   );
-}
+};
+
+export default Header;

@@ -1,103 +1,124 @@
-import React from 'react';
+import React from "react";
 import I18n from "i18n-js";
 
-import { CustomInput } from '../../UI/CustomInput';
-import { CustomSelect } from '../../UI/CustomSelectNew';
+import { CustomInput } from "../../UI/CustomInput";
+import { CustomSelect } from "../../UI/CustomSelect";
 
-import { useAppSelector } from "../../../helpers/redux-hooks";
-import { setSelectValue } from '../../../helpers/setSelectValue';
+import { useAppDispatch, useAppSelector } from "../../../helpers/redux-hooks";
+import { setCurrentField } from "../../../store/reducers/basket";
 
-interface IModalMainInputsList {
-    errors: {
-        [key: string]: string | undefined,
-    }
-    orderState: {
-        sum?: number | string,
-        ref: string,
-        name: string,
-        number: string,
-        typename: string,
-        quantity: number | null,
-        descr: string,
-        host: string,
-        accode: string,
-        measure: string,
-        clearing: string,
-    },
-    setOrderState: React.Dispatch<React.SetStateAction<any>>,
-}
+import { apiElem } from "../../../models/api";
 
-export const ModalMainInputsList: React.FC<IModalMainInputsList> = ({errors, orderState, setOrderState}) => {
-    const apiData = useAppSelector(state => state.apiData);
-    const setData = (name: string, value: string | number | null) => {
-        const newValue = {
-            ...orderState,
-            [name]: value
-        };
-        setOrderState(newValue);
-    }
+export const ModalMainInputsList: React.FC = () => {
+  const apiData = useAppSelector(state => state.apiData);
+  const dispatch = useAppDispatch();
+  const items = useAppSelector(state => state.basket.current);
 
-    return (
-        <ul className="modal-input-list">
-            <CustomInput name={'ref'} value={orderState.ref} label={I18n.t('ID')} type={'text'} onChange={setData} />
-            <CustomInput error={errors.name} name={'name'} value={orderState.name} label={I18n.t('Title')} type={'text'} onChange={setData} />
-            <CustomInput error={errors.number} name={'number'} value={orderState.number} label={I18n.t('Number')} type={'text'} onChange={setData} />
-            <CustomSelect 
-                name={'measure'} 
-                label={I18n.t('Measure')} 
-                options={apiData.measurements} 
-                onChange={setData} 
-                value={ setSelectValue(orderState.measure, orderState.measure) }
-            /> 
-            { 
-                orderState.typename === 'goods' ? 
-                    '' : <CustomSelect 
-                            name={'typename'} 
-                            label={I18n.t('Category')} 
-                            options={typenameOptions} 
-                            onChange={setData} 
-                            value={ setSelectValue(orderState.typename, orderState.typename) }
-                        /> 
-            }
-            <CustomSelect
-                name={'host'} 
-                label={I18n.t('Host')} 
-                options={hostOptions} 
-                onChange={setData} 
-                value={ setSelectValue(orderState.host, orderState.host) }
-            /> 
-            <CustomSelect 
-                name={'clearing'} 
-                label={I18n.t('Сlearing')} 
-                options={clearingOptions} 
-                onChange={setData} 
-                value={ setSelectValue(orderState.clearing, orderState.clearing) }
-            /> 
-            <CustomInput name={'quantity'} value={orderState.quantity || ''} label={I18n.t('Quantity')} type={'number'} onChange={setData} />
-            <CustomInput name={'descr'} value={orderState.descr} label={I18n.t('Description')} type={'textarea'} onChange={setData} />
-            {
-                orderState.host === 'sirena' ? 
-                    <CustomInput name={'accode'} value={orderState.accode} label={I18n.t('Carrier code')} type={'text'} onChange={setData} /> : ''
-            }
-        </ul>
-    )
-}
+  const setData = (name: string, value: string) => {
+    dispatch(setCurrentField({ name, value }));
+  };
 
-//!тестовые данные для селектов
-const typenameOptions = [
-    {value: 'cat_1', label: 'Категория 1'},
-    {value: 'cat_2', label: 'Категория 2'},
-    {value: 'cat_3', label: 'Категория 3'},
-]
+  const getLabel = (dataKey: string, chosen: string) =>
+    apiData[dataKey].find((elem: apiElem) => elem.value === items[chosen])!
+      .label;
 
-const hostOptions = [
-    {value: 'sirena', label: 'Сирена'},
-    {value: 'sirena_2', label: 'Сирена 2'},
-    {value: 'sirena_3', label: 'Сирена 3'},
-]
+  const getSelectValue = (dataKey: string, chosen: string) => {
+      const elem = apiData[dataKey].find((elem: apiElem) => elem.value === items[chosen]);
 
-const clearingOptions = [
-    {value: 'clearing_1', label: 'Клиринг 1'},
-    {value: 'clearing_2', label: 'Клиринг 2'},
-    {value: 'clearing_3', label: 'Клиринг 3'},
-]
+  };
+
+  return (
+    <ul className="modal-input-list">
+      <CustomInput
+        name="ref"
+        value={items.ref}
+        label={I18n.t("ID")}
+        type="text"
+        onChange={setData}
+      />
+      <CustomInput
+        name="name"
+        value={items.name}
+        label={I18n.t("Title")}
+        type="text"
+        onChange={setData}
+      />
+      <CustomInput
+        name="number"
+        value={items.number}
+        label={I18n.t("Number")}
+        type="text"
+        onChange={setData}
+      />
+      <CustomSelect
+        name="measure"
+        label={I18n.t("Measure")}
+        options={apiData.measurements}
+        onChange={setData}
+        // value={{
+        //   label: getLabel("measurements", "measure"),
+        //   value: items.measure
+        // }}
+          value={{label: '', value: ''}}
+      />
+      {items.typename === "goods" && (
+        <CustomSelect
+          name="typename"
+          label={I18n.t("Category")}
+          options={apiData.types}
+          onChange={setData}
+          // value={{
+          //   label: getLabel("types", "typename"),
+          //   value: items.typename
+          // }}
+          value={{label: '', value: ''}}
+        />
+      )}
+      <CustomSelect
+        name="host"
+        label={I18n.t("Host")}
+        options={apiData.hosts}
+        onChange={setData}
+        // value={{
+        //   label: getLabel("hosts", "host"),
+        //   value: items.host
+        // }}
+        value={{label: '', value: ''}}
+      />
+      <CustomSelect
+        name="clearing"
+        label={I18n.t("Сlearing")}
+        options={apiData.clearing}
+        onChange={setData}
+        // value={{
+        //   label: getLabel("clearing", "clearing"),
+        //   value: items.clearing
+        // }}
+        value={{label: '', value: ''}}
+      />
+      <CustomInput
+        name="quantity"
+        value={items.quantity}
+        label={I18n.t("Quantity")}
+        type="number"
+        onChange={setData}
+      />
+      <CustomInput
+        name="descr"
+        value={items.descr}
+        label={I18n.t("Description")}
+        type="textarea"
+        onChange={setData}
+      />
+      {items.host === "sirena" && (
+        <CustomInput
+          name={"accode"}
+          value={items.accode}
+          label={I18n.t("Carrier code")}
+          type={"text"}
+          onChange={setData}
+        />
+      )}
+    </ul>
+  );
+};

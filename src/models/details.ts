@@ -2,7 +2,7 @@ interface IObjectKeys {
     [key: string]: any;
 }
 
-export interface DetailsState extends IObjectKeys{
+export interface IDetailsState extends IObjectKeys{
     shop_id: string,
     shopref: string,
     orderNumber: string,
@@ -17,11 +17,10 @@ export interface DetailsState extends IObjectKeys{
     returnURLOk: string,
     returnURLFault: string,
     showcase: string,
-    payMode: string,
     isReccurring: boolean
 }
 
-export interface Detail {
+export interface IDetail {
     name: string;
     value: string | number
 }

@@ -5,6 +5,7 @@
 @import './modal.css';
 @import './notification.css';
 @import './basket.css';
+@import './send.css';
 
 .no-scroll {
   height: 100%;

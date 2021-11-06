@@ -1,66 +1,46 @@
-import React, {SyntheticEvent} from 'react';
+import React from "react";
 
 import I18n from "i18n-js";
-
-//! необходимо импортировать мапу/массив/объект с изображениями относительно каты.
-//! пока статика 2 фотки, чтобы видеть разные каты.
-const catGoods = "https://jira.ips.su/secure/projectavatar?pid=11001&avatarId=10011";
-const catNoGoods = "https://jira.ips.su/secure/projectavatar?pid=10201&avatarId=10205";
+import { IBasketValue } from "../../models/basket";
+import { useAppDispatch } from "../../helpers/redux-hooks";
+import { openBasketEdit, deleteBasketItem } from "../../store/reducers/basket";
 
 interface IOrderItem {
-    value: {
-        typename: string,
-        name: string,
-        quantity: number,
-        measure: string,
-        sum: number,
-        sumCurrency: string,
-    },
-    id: string,
-    setActive: React.Dispatch<React.SetStateAction<boolean>>,
+  item: IBasketValue;
+  itemKey: string;
 }
 
-export const OrderItem: React.FC<IOrderItem> = ({id, value, setActive}) => {
-    const deleteItem = (event: SyntheticEvent, key: string) => {
-        console.log('>>deleteItem', event, key);
-        event.preventDefault();
-    }
+export const OrderItem: React.FC<IOrderItem> = ({ itemKey, item }) => {
+  const dispatch = useAppDispatch();
 
-    const editItem = (event: SyntheticEvent, key: string) => {
-        console.log('>>editItem', event, key);
-        event.preventDefault();
-        setActive(true);
-    }
-
-    return (
-        <li className="order__item">
-            <figure className="order__figure">
-                {/* тестовая статика! */}
-                <img src={value.typename === 'goods' ? catGoods : catNoGoods} alt="categoryIcon" />
-            </figure>
-            <span className="order__span">{value.name}</span>
-            <div className="order-amount">
-                <span className="order__amount">{value.quantity}</span>
-                <span className="order__units">{value.measure}</span>
-            </div>
-            <div className="order-sum"> 
-                <span className="order__sum">{value.sum}</span>
-                <span className="order__currency">{value.sumCurrency}</span>
-            </div>
-            <div className="order-buttons">
-                <button 
-                    type="button"
-                    className="order-edit__button"
-                    aria-label={ I18n.t("Item edit button") }
-                    onClick={(event) => editItem(event, id)}
-                ></button>
-                <button 
-                    type="button"
-                    className="order-delete__button"
-                    aria-label={ I18n.t("Item delete button") }
-                    onClick={(event) => deleteItem(event, id)}
-                ></button>
-            </div>
-        </li>
-    )
-}
+  return (
+    <li className="order__item">
+      <figure className="order__figure">
+        <div className={`order__item-logo order__item-logo${item.typename}`} />
+      </figure>
+      <span className="order__span">{item.name}</span>
+      <div className="order-amount">
+        <span className="order__amount">{item.quantity}</span>
+        <span className="order__units">{item.measure}</span>
+      </div>
+      <div className="order-sum">
+        <span className="order__sum">{item.amount}</span>
+        <span className="order__currency">{item.currency}</span>
+      </div>
+      <div className="order-buttons">
+        <button
+          type="button"
+          className="order-edit__button"
+          aria-label={I18n.t("Item edit button")}
+          onClick={() => dispatch(openBasketEdit(itemKey))}
+        />
+        <button
+          type="button"
+          className="order-delete__button"
+          aria-label={I18n.t("Item delete button")}
+          onClick={() => dispatch(deleteBasketItem(itemKey))}
+        />
+      </div>
+    </li>
+  );
+};

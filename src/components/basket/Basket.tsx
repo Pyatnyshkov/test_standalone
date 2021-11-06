@@ -1,47 +1,42 @@
-import React, { forwardRef, useRef, useState } from 'react';
-import { useAppSelector } from "../../helpers/redux-hooks";
+import React, {forwardRef, useEffect, useRef} from "react";
+import {useAppDispatch, useAppSelector} from "../../helpers/redux-hooks";
 
-import { OrderModal } from './OrderModal';
-import { OrderList } from './OrderList';
+import { openBasketNew, closeBasket } from "../../store/reducers/basket";
 
-import { fadeIn, fadeOut } from '../../helpers/modal-fade'
+import { OrderModal } from "./OrderModal";
+import { OrderList } from "./OrderList";
+
+import { fadeIn, fadeOut } from "../../helpers/modal-fade";
 import I18n from "i18n-js";
 
-import '../../media/css/basket.css';
+const Basket = forwardRef((props, ref: any) => {
+  const modalRef = useRef<HTMLDivElement>(null);
+    const {editingKey} = useAppSelector(state => state.basket);
+  const dispatch = useAppDispatch();
 
-export const Basket = forwardRef((props, ref: any) => {
-	const modalRef = useRef<HTMLDivElement>(null);
-	const [modalActive, setModalActive] = useState(false);
-	const basket = useAppSelector(state => state.basket); //* получаем состояние корзины
-	const basketItemsLenght = Object.keys(basket.items).length; //* проверка количества ключей в объекте для отображения списка
+  useEffect(() => {
+      editingKey ? fadeIn(modalRef.current, 200) : fadeOut(modalRef.current, 200);
+  }, [editingKey]);
 
-	modalActive ? 
-		fadeIn(modalRef.current, 200) : 
-		fadeOut(modalRef.current, 200);
 
-	return (
-		<div className="basket content__elem" ref={ref}>
-			<div className="basket-header">
-				<button
-					type="button" 
-					className="open-modal-button" 
-					aria-label={ I18n.t("Modal open button") } 
-					onClick={() => setModalActive(true)}>
-				</button>
-			</div>
+  return (
+    <div className="basket content__elem" ref={ref}>
+      <div className="basket-header">
+        <button
+          type="button"
+          className="open-modal-button"
+          aria-label={I18n.t("Modal open button")}
+          onClick={() => dispatch(openBasketNew())}
+        />
+      </div>
 
-			{ 
-				basketItemsLenght ? 
-					<OrderList list={basket.items} setActive={setModalActive} /> : 
-					<span className="title basket__title">{ I18n.t("Cart is empty") }</span>
-			}
+      <OrderList />
 
-			<div ref={modalRef} className="modal" onClick={() => setModalActive(false)} >
-				{ 
-					modalActive ? <OrderModal setActive={setModalActive}/> : null
-				}
-			</div>
-			
-		</div>
-	)
-})
+      <div ref={modalRef} className="modal" onClick={() => dispatch(closeBasket())}>
+        {editingKey && <OrderModal />}
+      </div>
+    </div>
+  );
+});
+
+export default Basket;

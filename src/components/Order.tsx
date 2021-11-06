@@ -8,9 +8,8 @@ import { setDetail, setIsRecurring } from "../store/reducers/details";
 import { apiElem } from "../models/api";
 
 import I18n from "i18n-js";
-import {formatData} from "../helpers/formatData";
 
-export const Order = forwardRef((props, ref: any) => {
+const Order = forwardRef((props, ref: any) => {
   const dispatch = useAppDispatch();
   const details = useAppSelector(state => state.details);
   const { isLoading } = useAppSelector(state => state.app);
@@ -20,7 +19,7 @@ export const Order = forwardRef((props, ref: any) => {
     dispatch(setDetail({ name, value }));
   };
 
-  const getValue = (dataKey: string, chosen: string) =>
+  const getLabel = (dataKey: string, chosen: string) =>
     apiData[dataKey].find((elem: apiElem) => elem.value === details[chosen])!.label;
 
   if (isLoading) {
@@ -33,7 +32,7 @@ export const Order = forwardRef((props, ref: any) => {
           name="shop_id"
           onChange={handleChange}
           value={{
-            label: getValue("shops", "shop_id"),
+            label: getLabel("shops", "shop_id"),
             value: details.shop_id
           }}
           options={apiData.shops}
@@ -56,7 +55,7 @@ export const Order = forwardRef((props, ref: any) => {
           label={I18n.t("Currency")}
           name="currency"
           value={{
-            label: getValue("currencies", "currency"),
+            label: getLabel("currencies", "currency"),
             value: details.currency
           }}
           onChange={handleChange}
@@ -73,7 +72,7 @@ export const Order = forwardRef((props, ref: any) => {
           label={I18n.t("Language")}
           name="language"
           value={{
-            label: getValue("languages", "language"),
+            label: getLabel("languages", "language"),
             value: details.language
           }}
           onChange={handleChange}
@@ -90,7 +89,7 @@ export const Order = forwardRef((props, ref: any) => {
           label={I18n.t("Card type")}
           name="cardType"
           value={{
-            label: getValue("cardTypes", "cardType"),
+            label: getLabel("cardTypes", "cardType"),
             value: details.cardType
           }}
           onChange={handleChange}
@@ -100,26 +99,26 @@ export const Order = forwardRef((props, ref: any) => {
           label={I18n.t("Acquirer")}
           name="acquirer"
           value={{
-            label: getValue("acquires", "acquirer"),
+            label: getLabel("acquires", "acquirer"),
             value: details.acquirer
           }}
           onChange={handleChange}
           options={apiData.acquires}
         />
-          <CustomInput
-              label={I18n.t("Successful payment URL")}
-              name="returnURLOk"
-              value={details.returnURLOk}
-              onChange={handleChange}
-              type="text"
-          />
-          <CustomInput
-              label={I18n.t("Unsuccessful payment URL")}
-              name="returnURLFault"
-              value={details.returnURLFault}
-              onChange={handleChange}
-              type="text"
-          />
+        <CustomInput
+          label={I18n.t("Successful payment URL")}
+          name="returnURLOk"
+          value={details.returnURLOk}
+          onChange={handleChange}
+          type="text"
+        />
+        <CustomInput
+          label={I18n.t("Unsuccessful payment URL")}
+          name="returnURLFault"
+          value={details.returnURLFault}
+          onChange={handleChange}
+          type="text"
+        />
         <CustomCheckbox
           label={I18n.t("Reccuring")}
           name="reccurring"
@@ -135,15 +134,16 @@ export const Order = forwardRef((props, ref: any) => {
             type="text"
           />
         )}
-          <CustomInput
-              label={I18n.t("Showcase")}
-              name="ShowCase"
-              value={details.showcase}
-              onChange={handleChange}
-              type="text"
-          />
-
+        <CustomInput
+          label={I18n.t("Showcase")}
+          name="showcase"
+          value={details.showcase}
+          onChange={handleChange}
+          type="text"
+        />
       </div>
     );
   }
 });
+
+export default Order;

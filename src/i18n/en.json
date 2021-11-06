@@ -187,5 +187,7 @@
    "Successful payment URL": "Successful payment URL",
    "Unsuccessful payment URL": "Unsuccessful payment URL",
    "Showcase": "Showcase",
-   "Total": "Total"
+   "Total": "Total",
+   "Validation error": "Validation error",
+   "Validation error text": "Please make sure that the data entered is correct"
 }

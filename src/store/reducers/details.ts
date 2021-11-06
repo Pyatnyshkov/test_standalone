@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Detail, DetailsState } from "../../models/details";
+import { IDetail, IDetailsState } from "../../models/details";
 
-const initialState: DetailsState = {
+const initialState: IDetailsState = {
   shop_id: "",
   shopref: "",
   orderNumber: "",
@@ -16,20 +16,17 @@ const initialState: DetailsState = {
   returnURLOk: "",
   returnURLFault: "",
   showcase: "",
-  payMode: "",
-  isReccurring: false,
-  cardPayment: false,
-  promoPayment: false
+  isReccurring: false
 };
 
 const detailsSlice = createSlice({
   name: "details",
   initialState,
   reducers: {
-    setDetail(state: DetailsState, action: PayloadAction<Detail>) {
+    setDetail(state: IDetailsState, action: PayloadAction<IDetail>) {
       state[action.payload.name] = action.payload.value;
     },
-    setDetails(state, action: PayloadAction<DetailsState>) {
+    setDetails(state, action: PayloadAction<IDetailsState>) {
       return {
         ...state,
         ...action.payload
@@ -37,13 +34,6 @@ const detailsSlice = createSlice({
     },
     setIsRecurring(state, action: PayloadAction<boolean>) {
       state.isReccurring = action.payload;
-    },
-    // Временные стейты для методов оплаты
-    setCardPayment(state, action: PayloadAction<boolean>) {
-      state.cardPayment = action.payload;
-    },
-    setPromoPayment(state, action: PayloadAction<boolean>) {
-      state.promoPayment = action.payload;
     }
   }
 });
@@ -52,7 +42,5 @@ export const {
   setDetail,
   setDetails,
   setIsRecurring,
-  setCardPayment,
-  setPromoPayment
 } = detailsSlice.actions;
 export default detailsSlice.reducer;

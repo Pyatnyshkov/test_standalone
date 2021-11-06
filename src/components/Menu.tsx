@@ -1,12 +1,16 @@
 import React from "react";
 import I18n from "i18n-js";
 
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../helpers/redux-hooks";
 
-export default function Menu(props) {
-	const { currentStep, showSend } = useSelector((state) => state.app);
+interface IMenu {
+	handleStep: (step: string) => void
+}
 
-	const steps = {
+const Menu: React.FC<IMenu> = ({ handleStep }) => {
+	const { currentStep, showSend } = useAppSelector(state => state.app);
+
+	const steps: {[key: string]: string} = {
 		order: "Order",
 		basket: "Basket",
 		customer: "Customer",
@@ -14,8 +18,8 @@ export default function Menu(props) {
 	if (showSend) {
 		steps.send = "Send options";
 	}
-	const handleMenu = (e) => {
-		props.handleStep(e.target.value);
+	const handleMenu = (e: { target: HTMLInputElement }) => {
+		handleStep(e.target.value);
 	};
 	const renderSteps = () => {
 		return Object.keys(steps).map((step) => (
@@ -34,8 +38,9 @@ export default function Menu(props) {
 	};
 	return (
 		<div className="menu">
-			<div className="menu_logo"></div>
 			<div className="navigation">{renderSteps()}</div>
 		</div>
 	);
-}
+};
+
+export default Menu;

@@ -5,9 +5,9 @@ import {
   getCurrencies,
   getShops
 } from "../../helpers/api";
-import { setLoading } from "./app";
-import { setDetail } from "./details";
-import { setShops, setCurrencies, setAcquires, setCardTypes } from "./apiData";
+import { setLoading } from "../reducers/app";
+import { setDetail } from "../reducers/details";
+import { setShops, setCurrencies, setAcquires, setCardTypes } from "../reducers/apiData";
 import { formatData } from "../../helpers/formatData";
 
 export const fetchShops = () => async (dispatch: AppDispatch) => {

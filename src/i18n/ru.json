@@ -188,5 +188,7 @@
    "Successful payment URL": "URL успешной оплаты",
    "Unsuccessful payment URL": "URL неудачной оплаты",
    "Showcase": "Шоукейс",
-   "Total": "Сумма"
+   "Total": "Сумма",
+   "Validation error": "Ошибка ввода данных",
+   "Validation error text": "Пожалуйста проверьте правильность введенных данных"
 }

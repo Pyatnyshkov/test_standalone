@@ -15,6 +15,7 @@ const initialState: AppState = {
   isLoading: true,
   currentStep: "",
   showSend: false,
+  sendType: 'link',
   notify: {} as Notify
 };
 
@@ -46,6 +47,9 @@ const appSlice = createSlice({
     },
     setNotify(state, action: PayloadAction<Notify>) {
       state.notify = action.payload;
+    },
+    setSendType(state, action: PayloadAction<string>) {
+      state.sendType = action.payload;
     }
   }
 });
@@ -57,6 +61,7 @@ export const {
   showSend,
   setNotify,
   changeLanguage,
-  setUser
+  setUser,
+  setSendType
 } = appSlice.actions;
 export default appSlice.reducer;

@@ -46,7 +46,7 @@ const Order = forwardRef((props, ref: any) => {
         />
         <CustomInput
           label={I18n.t("Order number")}
-          name="orderNumber"
+          name="number"
           value={details.orderNumber}
           onChange={handleChange}
           type="number"

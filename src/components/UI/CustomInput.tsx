@@ -7,7 +7,7 @@ interface ICustomInput {
   name: string;
   onChange: (name: string, value: string) => void;
   type: string;
-  value: string;
+  value: string | undefined;
 }
 
 export const CustomInput: React.FC<ICustomInput> = ({

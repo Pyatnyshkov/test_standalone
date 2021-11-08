@@ -28,6 +28,7 @@ export const OrderModal: React.FC = () => {
       dispatch(saveBasketItem());
       dispatch(dispatch(closeBasket()));
     } else {
+      console.log(errors)
       dispatch(
         setNotify({
           type: "warn",

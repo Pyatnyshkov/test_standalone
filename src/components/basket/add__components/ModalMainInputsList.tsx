@@ -18,13 +18,13 @@ export const ModalMainInputsList: React.FC = () => {
     dispatch(setCurrentField({ name, value }));
   };
 
-  const getLabel = (dataKey: string, chosen: string) =>
-    apiData[dataKey].find((elem: apiElem) => elem.value === items[chosen])!
-      .label;
-
   const getSelectValue = (dataKey: string, chosen: string) => {
-      const elem = apiData[dataKey].find((elem: apiElem) => elem.value === items[chosen]);
-
+    const elem = apiData[dataKey].find(
+      (elem: apiElem) => elem.value === items[chosen]
+    );
+    if (elem) {
+      return { label: elem.label, value: items[chosen] };
+    } else return { label: "", value: "" };
   };
 
   return (
@@ -55,11 +55,7 @@ export const ModalMainInputsList: React.FC = () => {
         label={I18n.t("Measure")}
         options={apiData.measurements}
         onChange={setData}
-        // value={{
-        //   label: getLabel("measurements", "measure"),
-        //   value: items.measure
-        // }}
-          value={{label: '', value: ''}}
+        value={getSelectValue("measurements", "measure")}
       />
       {items.typename === "goods" && (
         <CustomSelect
@@ -67,11 +63,7 @@ export const ModalMainInputsList: React.FC = () => {
           label={I18n.t("Category")}
           options={apiData.types}
           onChange={setData}
-          // value={{
-          //   label: getLabel("types", "typename"),
-          //   value: items.typename
-          // }}
-          value={{label: '', value: ''}}
+          value={getSelectValue("types", "typename")}
         />
       )}
       <CustomSelect
@@ -79,26 +71,18 @@ export const ModalMainInputsList: React.FC = () => {
         label={I18n.t("Host")}
         options={apiData.hosts}
         onChange={setData}
-        // value={{
-        //   label: getLabel("hosts", "host"),
-        //   value: items.host
-        // }}
-        value={{label: '', value: ''}}
+        value={getSelectValue("hosts", "host")}
       />
       <CustomSelect
         name="clearing"
         label={I18n.t("Сlearing")}
         options={apiData.clearing}
         onChange={setData}
-        // value={{
-        //   label: getLabel("clearing", "clearing"),
-        //   value: items.clearing
-        // }}
-        value={{label: '', value: ''}}
+        value={getSelectValue("clearing", "clearing")}
       />
       <CustomInput
         name="quantity"
-        value={items.quantity}
+        value={items.quantity ? items.quantity.toString() : ''}
         label={I18n.t("Quantity")}
         type="number"
         onChange={setData}

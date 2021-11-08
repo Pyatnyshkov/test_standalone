@@ -3,10 +3,22 @@ interface IObjectKeys {
 }
 
 export interface ICustomer extends IObjectKeys {
-    id: string,
-    name: string,
-    email: string,
-    phone: string
+    /**
+     * Customer id in ips system
+     */
+    id: string;
+    /**
+     * Customer's full name
+     */
+    name: string;
+    /**
+     * Customers email
+     */
+    email: string;
+    /**
+     * Customer's phone
+     */
+    phone: string;
 }
 
 export interface ICustomerData {

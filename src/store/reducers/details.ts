@@ -4,7 +4,7 @@ import { IDetail, IDetailsState } from "../../models/details";
 const initialState: IDetailsState = {
   shop_id: "",
   shopref: "",
-  orderNumber: "",
+  number: "",
   currency: "",
   timelimit: "",
   language: "ru",

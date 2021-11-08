@@ -3,14 +3,14 @@ import I18n from "i18n-js";
 
 import { CustomInput } from "../../UI/CustomInput";
 import { useAppDispatch, useAppSelector } from "../../../helpers/redux-hooks";
-import { setCurrentField } from "../../../store/reducers/basket";
+import { setMarking } from "../../../store/reducers/basket";
 
 export const Marking: React.FC = () => {
   const dispatch = useAppDispatch();
   const items = useAppSelector(state => state.basket.current);
 
   const setData = (name: string, value: string) => {
-    dispatch(setCurrentField({ name, value }));
+    dispatch(setMarking({ name, value }));
   };
 
   return (
@@ -37,7 +37,7 @@ export const Marking: React.FC = () => {
         onChange={setData}
       />
       <CustomInput
-        name="hed"
+        name="ncd"
         value={items.hed}
         label={I18n.t("HED")}
         type="text"

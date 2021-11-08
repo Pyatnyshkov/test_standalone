@@ -3,9 +3,15 @@ interface IObjectKeys {
 }
 
 export interface IDetailsState extends IObjectKeys{
+    /**
+     * shop ID in ips system
+     */
     shop_id: string,
     shopref: string,
-    orderNumber: string,
+    /**
+     * Order number
+     */
+    number: string,
     currency: string,
     timelimit: string,
     language: string,

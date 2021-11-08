@@ -24,14 +24,12 @@ export const CustomSelect: React.FC<ICustomSelect> = ({
 }) => {
   const errorClass: ErrorClassType = error ? "error__select" : undefined;
   const saveSelectName = (value: any, key: any) => {
-    console.log('value: ', value);
-    console.log('key: ', key);
     onChange(key.name, value.value);
   };
 
   return (
     <li className="list__item">
-      <span className="modal-form__span">{label}</span>
+      <span className="list_span">{label}</span>
       <div className={errorClass}>
         <Select
           name={name}
@@ -40,7 +38,7 @@ export const CustomSelect: React.FC<ICustomSelect> = ({
           value={value}
         />
       </div>
-      {error ? <div className={`required-label`}>{error}</div> : null}
+      {error ? <div className='required-label'>{error}</div> : null}
     </li>
   );
 };
